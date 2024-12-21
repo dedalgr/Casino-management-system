@@ -1,5 +1,5 @@
 Change your security key.
-Look in conf.py and rc.py
+Look in conf.py and cr.py
 
 You need to build your own SVN server. Search for NEW_SVN_IP and change it to your address.
 
