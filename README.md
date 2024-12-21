@@ -17,3 +17,7 @@ If you not have RSA key the system close db port with iptables.
 To create new db use alembic and run ColibriCMS/gui_libs/right.py 
 user neme is root, pass is 123456
 
+If you want me to run it on my server to try it, it's free. 
+If you want me to run it on your server, I'll ask you to pay for the effort.
+
+
