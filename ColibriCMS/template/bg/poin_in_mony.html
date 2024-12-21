@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="bg">
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	</head>
+    <body>
+    <style type="text/css">
+    @page {
+    size: auto
+    }
+    hr.new5 {
+  border:60px solid black;
+  border-radius: 20px;
+}
+hr.new4 {
+  border:1px dashed;
+}
+h2.new1 {
+    font-size: 30px;
+}
+.left {
+    text-align: left;
+}
+.right {
+    text-align: right;
+}
+.left, .right {
+    display: inline-block;
+    width: 50%;
+}
+    </style>
+    {% if original %}
+    <h2 class="new1" align="center">Дискаунт</h2>
+    <h4 class="new1" align="center">
+                                {{ objects }}<br>
+                                {{ sity }}<br>
+                                {{ adress }}</h4>
+
+            <h4 align="left">Име:<br>
+                {{ name }}<br>
+                ЕГН: {{ egn }}<br>
+                За получаване: {{ count }}лв.<br>
+                Град: {{ cust_sity }}<br>
+                Адрес:<br>{{ cust_adress }}<br>
+            Издал {{ user_id }}:......................................<br>
+            Изплатен на дата:......................<br>
+            Получих сумата:........................<br></h4>
+            <div>
+                <div class="left"><h6>{{ ID }}</h6></div><div class="right"><h6>{{ dates }}</h6></div>
+            </div><br>
+    {% endif %}
+    {% if copy == True %}
+        <br><br><h2 class="new1" align="center">Дискаунт Копие</h2>
+        <h4 class="new1" align="center"><br>
+                                {{ objects }}<br>
+                                {{ sity }}<br>
+                                {{ adress }}</h4>
+
+            <h4 align="left">Име:<br>
+                {{ name }}<br>
+                ЕГН: {{ egn }}<br>
+                За получаване: {{ count }}лв.<br>
+                Град: {{ cust_sity }}<br>
+                Адрес:<br>{{ cust_adress }}<br>
+            Издал {{ user_id }}:......................................<br>
+            Изплатен на дата:......................<br>
+            Получих сумата:........................<br></h4>
+            <div>
+                <div class="left"><h6>{{ ID }}</h6></div><div class="right"><h6>{{ dates }}</h6></div>
+            </div>
+    {% endif %}
+
+    </body>
+</html>

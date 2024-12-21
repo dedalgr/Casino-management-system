@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="bg">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<body>
+<style>
+@page {
+            size: A4;
+            margin: 0in 0.44in 0.2in 0.44in;
+    }
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td, tr {
+    padding: 1px;
+    white-space:nowrap;
+    text-align: left;
+}
+
+    body {
+        height:280mm;
+        width:200mm;
+        /* to centre page on screen*/
+        margin-left: auto;
+        margin-right: auto;
+    }
+#inline{
+margin: 0px;
+padding: 0px;
+width: auto;
+display:flex;}
+
+.one {
+    width: 40%;
+    float: left;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.two{
+width: 40%;
+float: right;
+text-align: right;
+overflow: hidden;
+white-space: nowrap;
+}
+
+</style>
+
+
+<div align="center"><h3>{{ doc_tupe }} FOR SLOT MACHINES IN A GAME HALL</h3></div>
+<table  style="width:100%"; border="1">
+
+<tr>
+<td colspan="9" rowspan="1"> <b>GAME ROOM: {{casino_info['object name'] }}  {{casino_info['object adress'] }} </b></td>
+</tr>
+<tr>
+
+<td colspan="2" rowspan="1" ><font size="1">Sponsor: {{ casino_info['company'] }} <br />{{ casino_info['company adress'] }}</font></td>
+
+
+    {% if new_order %}
+        <td colspan="4" rowspan="1" ><font size="1"><b>VALUE OF ONE CREDIT IN MONEY: 0.01</b></font></td>
+    {% else %}
+        <td colspan="4" rowspan="1" ><font size="1"><b>VALUE OF ONE CREDIT IN MONEY: 0.01</b></font></td>
+    {% endif %}
+
+    {% if for_mounth %}
+        <td colspan="3" rowspan="1" ><b><font size="1">Report №: {{ nom }}<br />For mounth: {{ for_mounth }} {{ doc_year }}г. </font></b></td>
+    {% else %}
+        <td colspan="3" rowspan="1" ><b><font size="1">Report №: {{ nom }}<br />Date:  {{ doc_date }}</font></b></td>
+    {% endif %}
+</tr>
+<td colspan="1" rowspan="1"><div align="center"><font size="1">№ <br />in<br />row</font></div></td>
+<td colspan="1" rowspan="1"> <div align="center"><b><font size="1">Production №<br />on a slot machine<br />(EMG)</font></b></div></td>
+<td colspan="2" rowspan="1"  ><div align="center"><b><font size="1">Indications of electronic counters</font></b></div></td>
+<td colspan="2" rowspan="1"  ><div align="center"><b><font size="1">Indications of mechanical counters</font></b></div></td>
+<td colspan="1" rowspan="1"  ><b><div align="center"><font size="1">Amount of<br />incoming<br />bet</font></div></b></td>
+<td colspan="1" rowspan="1"  ><b><div align="center"><font size="1">Amount of<br />paid<br />win</font></div></b></td>
+<td colspan="1" rowspan="1"  ><div align="center"><b><font size="1">Difference<br />(7-8)</font></b></div></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><b><div align="center"><font size="1">IN</font></div></b></td>
+<td><b><div align="center"><font size="1">OUT</font></div></b></td>
+<td><b><div align="center"><font size="1">IN</font></div></b></td>
+<td><b><div align="center"><font size="1">OUT</font></div></b></td>
+<td></td>
+<td></td>
+<td></td>
+
+</tr>
+<tr>
+<td><b><div align="center"><font size="1">1</font></div></b></td>
+<td><b><div align="center"><font size="1">2</font></div></b></td>
+<td><b><div align="center"><font size="1">3</font></div></b></td>
+<td><b><div align="center"><font size="1">4</font></div></b></td>
+<td><b><div align="center"><font size="1">5</font></div></b></td>
+<td><b><div align="center"><font size="1">6</font></div></b></td>
+<td><b><div align="center"><font size="1">7</font></div></b></td>
+<td><b><div align="center"><font size="1">8</font></div></b></td>
+<td><b><div align="center"><font size="1">9</font></div></b></td>
+</tr>
+{% for data in row|sort %}
+<tr>
+<td><div align="center"><font size="1">{{ data }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['serial'] }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['new_el_in'] }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['new_el_out'] }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['new_mex_in'] }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['new_mex_out'] }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['total_in'] }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['total_out'] }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['total'] }}</font></div></td>
+</tr>
+{% endfor %}
+{% if jp_down %}
+<tr>
+<td colspan="6" rowspan="1" > <div align="left"><font size="1">{{ jp_down }}</font></div></td>
+<td colspan="8" rowspan="1" ><div align="right"><font size="1">{{jp_monu}}</font></div></td>
+</tr>
+{% endif %}
+<tr>
+
+    <td colspan="6" rowspan="1" > <div align="right"><font size="1">Total:</font></div></td>
+    <td><div align="center"><font size="1">{{total_in}}</font></div></td>
+    <td><div align="center"><font size="1">{{total_out}}</font></div></td>
+    <td><div align="center"><font size="1">{{sum_all_total}}</font></div></td>
+</tr>
+    </table>
+    <br />
+
+{% if doc_type == True %}
+<table  style="width:100%"; border="1">
+    {% if ram_clear %}
+    {% for item in ram_clear %}
+     <tr>
+        <td width="15%"><b>Damaged EMG:</b></td>
+        <td width="15%"><div align="center"><font size="1">{{ ram_clear[item]['serial'] }}</font></div></td>
+        <td width="10%"><div align="center"><font size="1">{{ ram_clear[item]['el_in'] }}</font></div></td>
+        <td width="10%"><div align="center"><font size="1">{{ ram_clear[item]['el_out'] }}</font></div></td>
+        <td width="10%"><div align="center"><font size="1">{{ ram_clear[item]['mex_in'] }}</font></div></td>
+        <td width="10%"><div align="center"><font size="1">{{ ram_clear[item]['mex_out'] }}</font></div></td>
+<!--        <td width="10%"></td>-->
+    </tr>
+    {% endfor %}
+    {% else %}
+    {% if ram_clear_count %}
+    {% for item in ram_clear_count %}
+    <tr>
+        <td width="15%"><b>Damaged EMG:</b></td>
+        <td width="15%"></td>
+        <td width="10%"></td>
+        <td width="10%"></td>
+        <td width="10%"></td>
+        <td width="10%"></td>
+<!--        <td width="10%"></td>-->
+    </tr>
+    {% endfor %}
+    {% else %}
+    <tr>
+        <td width="15%"><b>Damaged EMG:</b></td>
+        <td width="15%"></td>
+        <td width="10%"></td>
+        <td width="10%"></td>
+        <td width="10%"></td>
+        <td width="10%"></td>
+<!--        <td width="10%"></td>-->
+    </tr>
+    {% endif %}
+    {% endif %}
+
+<tr>
+<td colspan="9" rowspan="1" >Fill in the data from the column 2 to 6</td>
+</tr>
+<tr>
+<td colspan="9" rowspan="1" >Date and time: {{ ram_clear_time }}</td>
+</tr>
+</table>
+{% endif %}
+<div class="inline">
+<div class="one"><p>GAME HALL MANAGER:<br />
+{{manager}} <br />
+......................................................<br />
+/name, surname and signature/</p>
+</div>
+<div class="one"></div>
+<div class="two"><p align="left">CROUPIER:<br />
+    {{user_name}}
+<br />
+......................................................<br />
+/name, surname and signature/</p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="bg">
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	</head>
+    <body>
+    <style type="text/css">
+    @page {
+    size: auto
+    }
+    hr.new5 {
+  border:60px solid black;
+  border-radius: 20px;
+}
+hr.new4 {
+  border:1px dashed;
+}
+h2.new1 {
+    font-size: 30px;
+}
+.left {
+    text-align: left;
+}
+.right {
+    text-align: right;
+}
+.left, .right {
+    display: inline-block;
+    width: 50%;
+}
+    </style>
+    {% for i in range(count) %}
+    {% if my_copy == False %}
+    <h4 class="new1" align="center">Разходен касов ордер<br>
+                                Отказан:......<br>
+                                {{company}}<br>
+                                ЕИК: {{ EIK }}<br>
+                                {{ objects }}<br>
+                                {{ sity }}<br>
+                                {{ objects_adress }}</h4>
+
+            <h4 align="left">Име:<br>
+                {{ name }}<br>
+                ЕГН: {{ egn }}<br>
+                {% if reson %}
+                    Основание: {{ reson }}<br>
+                {% else %}
+                    Основание: Печалба от ИА<br>
+                {% endif %}
+                Изплатени: {{ mony[i] }}лв.<br>
+                Град: {{ cust_sity }}<br>
+                Адрес:<br>{{ cust_adress }}<br>
+            Подпис:....................<br>
+            Издал {{ user_id }}:....................</h4><br>
+            <div>
+                <div class="left"><h6>{{ ID[i] }}</h6></div><div class="right"><h6>{{ dates }}</h6></div>
+            </div>
+    {% endif %}
+    {% if count > 1 %}
+    <br><br><br>
+    {% else %}
+    <br><br>
+    {% endif %}
+        <h4 class="new1" align="center">Разходен касов ордер<br>
+                                Екземпляр 2<br>
+                                {{company}}<br>
+                                ЕИК: {{ EIK }}<br>
+                                {{ objects }}<br>
+                                {{ sity }}<br>
+                                {{ objects_adress }}</h4>
+
+            <h4 align="left">Име:<br>
+                {{ name }}<br>
+                ЕГН: {{ egn }}<br>
+                {% if reson %}
+                    Основание: {{ reson }}<br>
+                {% else %}
+                    Основание: Печалба от ИА<br>
+                {% endif %}
+                Изплатени: {{ mony[i] }}лв.<br>
+                Град: {{ cust_sity }}<br>
+                Адрес:<br>{{ cust_adress }}<br>
+            Подпис:...................................<br>
+            Издал {{ user_id }}:....................</h4><br>
+
+            <div>
+                <div class="left"><h6>{{ ID[i] }}</h6></div><div class="right"><h6>{{ dates }}</h6></div>
+            </div>
+    {% endfor %}
+
+    </body>
+</html>

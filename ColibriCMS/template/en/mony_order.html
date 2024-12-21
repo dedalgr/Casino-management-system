@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="bg">
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	</head>
+    <body>
+<style type="text/css">
+@page {
+            size: A4;
+            margin: 0in 0.44in 0.2in 0.44in;
+    }
+</style>
+<div class="col-md-9" role="main">
+
+<h5 id="no-3586" align="left">Order №: {{ nom }}<br />Start of work: {{ start_dates }}<br />End of work: {{ dates }}</h5>
+<h4 id="_2" align="center">Region: {{ region }}<br />
+Total Hall: {{ total_zala }}<br />
+Reported money: {{ total }}</h4>
+<hr />
+<table style="width:100%; border-collapse:collapse;">
+<thead>
+<tr>
+<th align="left">Income</th>
+<th align="left">Sum</th>
+<th align="right">Expenses</th>
+<th align="right">Sum</th>
+</tr>
+</thead>
+<tbody>
+{% for i in range(len_row) %}
+<tr>
+{% if i+1 > prihodi|length %}
+<td align="left"></td>
+<td align="left"></td>
+{% else %}
+<td align="left">{{ prihodi[i][0] }}</td>
+<td align="left">{{ prihodi[i][1] }}</td>
+{% endif %}
+
+{% if i+1 > razhodi|length %}
+<td align="left"></td>
+<td align="left"></td>
+{% else %}
+<td align="right">{{ razhodi[i][0] }}</td>
+<td align="right">{{ razhodi[i][1] }}</td>
+{% endif %}
+</tr>
+{% endfor %}
+<tr>
+<td align="left">Accumulated Bill</td>
+<td align="left">{{ bill }}</td>
+<td align="right">Bill</td>
+<td align="right">{{ bill_r }}</td>
+</tr>
+<tr>
+<td align="left">IN</td>
+<td align="left">{{ ins }}</td>
+<td align="right">OUT</td>
+<td align="right">{{ out }}</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td align="left"><b>Total:</b></td>
+<td align="left"><b>{{ prihodi_sum }}</b></td>
+<td align="right"><b>Total:</b></td>
+<td align="right"><b>{{ razhodi_sum }}</b></td>
+</tr>
+</tfoot>
+</table>
+<hr />
+<br /><br /><br /><br />
+<ul>
+<li>Missing amount:..................</li>
+<li>Payment amount:..................</li>
+<li>Name: {{ user }}</li>
+<li>Signature:.........................</li>
+</ul>
+<h5 id="_3" align="right">Signature: ................................<br />
+({{ user }})</h5>           
+</div>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+"http://www.w3.org/TR/html4/strict.dtd">
+<html lang="bg">
+<meta http-equiv="content-type" content="text/html;charset=UTF-8">
+<body>
+<style>
+@page {
+            size: A4;
+            margin: 0in 0.44in 0.2in 0.44in;
+    }
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th, td, tr {
+    padding: 1px;
+    white-space:nowrap;
+    text-align: left;
+}
+
+    body {
+        height:280mm;
+        width:200mm;
+        /* to centre page on screen*/
+        margin-left: auto;
+        margin-right: auto;
+    }
+#inline{
+margin: 0px;
+padding: 0px;
+width: auto;
+display:flex;}
+
+.one {
+    width: 40%;
+    float: left;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+}
+.two{
+width: 40%;
+float: right;
+text-align: right;
+overflow: hidden;
+white-space: nowrap;
+}
+
+</style>
+
+
+<div align="center"><font size="1">{{ doc_tupe }} ЗА ИГРАЛНИ АВТОМАТИ В ИГРАЛНА ЗАЛА</font></div>
+<table  style="width:100%"; border="1">
+<tr>
+    <td colspan="9" rowspan="1"> <font size="1"><b>ИГРАЛНА ЗАЛА: {{casino_info['object name'] }}  {{casino_info['object adress'] }}</b></font></td>
+</tr>
+<tr>
+
+<td colspan="2" rowspan="1" ><font size="1">Организатор: {{ casino_info['company'] }} <br />{{ casino_info['company adress'] }}</font></td>
+    {% if new_order %}
+        <td colspan="4" rowspan="1" ><font size="1"><b>СТОЙНОСТ НА ЕДИНИЦА КРЕДИТ В ЛЕВА: 0.01 лв.</b></font></td>
+    {% else %}
+        <td colspan="4" rowspan="1" ><font size="1"><b>СТОЙНОСТ НА ЕДИНИЦА КРЕДИТ В ЛЕВА: 0.01 лв.</b></font></td>
+    {% endif %}
+    {% if for_mounth %}
+
+        <td colspan="3" rowspan="1" ><b><font size="1">Отчет №: {{ nom }}<br />За месец: {{ for_mounth }} {{ doc_year }}г. </font></b></td>
+    {% else %}
+
+        <td colspan="3" rowspan="1" ><b><font size="1">Отчет №: {{ nom }}<br />Дата:  {{ doc_date }}</font></b></td>
+    {% endif %}
+
+</tr>
+<td colspan="1" rowspan="1"><div align="center"><font size="1">№ <br />по<br />ред</font></div></td>
+<td colspan="1" rowspan="1"> <div align="center"><b><font size="1">Производствен №<br />на игрален автомат (ИА)</font></b></div></td>
+<td colspan="2" rowspan="1"  ><div align="center"><b><font size="1">Показания на електронни броячи</font></b></div></td>
+<td colspan="2" rowspan="1"  ><div align="center"><b><font size="1">Показания на електромеханични броячи</font></b></div></td>
+    {% if not new_order %}
+        <td colspan="1" rowspan="1"  ><b><div align="center"><font size="1">Постъпили<br />суми от<br />участие в<br />хазартни<br />игри</font></div></b></td>
+        <td colspan="1" rowspan="1"  ><b><div align="center"><font size="1">Изплатени<br /> суми от<br />участие в<br />хазартни<br />игри</font></div></b></td>
+    {% else %}
+        <td colspan="1" rowspan="1"  ><b><div align="center"><font size="1">Сума на<br />постъпили<br />залози</font></div></b></td>
+        <td colspan="1" rowspan="1"  ><b><div align="center"><font size="1">Сума на<br />изплатени<br />печалби</font></div></b></td>
+    {% endif %}
+    <td colspan="1" rowspan="1"  ><div align="center"><b><font size="1">Разлика<br />(7-8)</font></b></div></td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td><b><div align="center"><font size="1">ВХОД (IN)</font></div></b></td>
+<td><b><div align="center"><font size="1">ИЗХОД (OUT)</font></div></b></td>
+<td><b><div align="center"><font size="1">ВХОД (IN)</font></div></b></td>
+<td><b><div align="center"><font size="1">ИЗХОД (OUT)</font></div></b></td>
+<td></td>
+<td></td>
+<td></td>
+
+</tr>
+<tr>
+<td><b><div align="center"><font size="1">1</font></div></b></td>
+<td><b><div align="center"><font size="1">2</font></div></b></td>
+<td><b><div align="center"><font size="1">3</font></div></b></td>
+<td><b><div align="center"><font size="1">4</font></div></b></td>
+<td><b><div align="center"><font size="1">5</font></div></b></td>
+<td><b><div align="center"><font size="1">6</font></div></b></td>
+<td><b><div align="center"><font size="1">7</font></div></b></td>
+<td><b><div align="center"><font size="1">8</font></div></b></td>
+<td><b><div align="center"><font size="1">9</font></div></b></td>
+</tr>
+{% for data in row|sort %}
+<tr>
+<td><div align="center"><font size="1">{{ data }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['serial'] }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['new_el_in'] }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['new_el_out'] }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['new_mex_in'] }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['new_mex_out'] }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['total_in'] }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['total_out'] }}</font></div></td>
+<td><div align="center"><font size="1">{{ row[data]['total'] }}</font></div></td>
+</tr>
+{% endfor %}
+{% if jp_down %}
+<tr>
+<td colspan="6" rowspan="1" > <div align="left"><font size="1">{{ jp_down }}</font></div></td>
+<td colspan="8" rowspan="1" ><div align="right"><font size="1">{{jp_monu}}</font></div></td>
+</tr>
+{% endif %}
+<tr>
+
+    <td colspan="6" rowspan="1" > <div align="right"><font size="1">Общо:</font></div></td>
+    <td><div align="center"><font size="1">{{total_in}}</font></div></td>
+    <td><div align="center"><font size="1">{{total_out}}</font></div></td>
+    <td><div align="center"><font size="1">{{sum_all_total}}</font></div></td>
+</tr>
+    </table>
+<br>
+{% if doc_type == True %}
+<table  style="width:100%"; border="1">
+    {% if ram_clear %}
+    {% for item in ram_clear %}
+     <tr>
+        <td width="15%"><b>Повреден ИА:</b></td>
+        <td width="15%"><div align="center"><font size="1">{{ ram_clear[item]['serial'] }}</font></div></td>
+        <td width="10%"><div align="center"><font size="1">{{ ram_clear[item]['el_in'] }}</font></div></td>
+        <td width="10%"><div align="center"><font size="1">{{ ram_clear[item]['el_out'] }}</font></div></td>
+        <td width="10%"><div align="center"><font size="1">{{ ram_clear[item]['mex_in'] }}</font></div></td>
+        <td width="10%"><div align="center"><font size="1">{{ ram_clear[item]['mex_out'] }}</font></div></td>
+    </tr>
+    {% endfor %}
+    {% else %}
+        {% if ram_clear_count %}
+
+        {% for item in ram_clear_count %}
+        <tr>
+            <td width="15%"><b><font size="1">Повреден ИА:</font></b></td>
+            <td width="15%"></td>
+            <td width="10%"></td>
+            <td width="10%"></td>
+            <td width="10%"></td>
+            <td width="10%"></td>
+    <!--        <td width="10%"></td>-->
+        </tr>
+        {% endfor %}
+        {% else %}
+        <tr>
+            <td width="15%"><b>Повреден ИА:</b></td>
+            <td width="15%"></td>
+            <td width="10%"></td>
+            <td width="10%"></td>
+            <td width="10%"></td>
+            <td width="10%"></td>
+    <!--        <td width="10%"></td>-->
+        </tr>
+        {% endif %}
+    {% endif %}
+<tr>
+    <td colspan="9" rowspan="1" ><font size="1">Попълват се данните от колона 2 до 6</font></td>
+</tr>
+<tr>
+    <td colspan="9" rowspan="1" ><font size="1">Дата и час: {{ ram_clear_time }}</font></td>
+</tr>
+</table>
+{% endif %}
+<div class="inline">
+    <div class="one"><p><font size="1">УПРАВИТЕЛ НА ИГРАЛНА ЗАЛА:</font>
+        <font size="1">{{manager}}</font>
+......................................................<br />
+        <font size="1">/име, фамилия и подпис/</font></p>
+</div>
+<div class="one"></div>
+    <div class="two"><p align="left"><font size="1">КРУПИЕ:</font>
+        <font size="1">{{user_name}}</font>
+......................................................<br />
+        <font size="1">/име, фамилия и подпис/</font></p>
+</div>
+</div>
+</body>
+</html>

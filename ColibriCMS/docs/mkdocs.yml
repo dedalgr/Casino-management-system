@@ -1,0 +1,33 @@
+site_name: Colibri CMS
+use_directory_urls: False
+
+nav:
+- 'Home': 'index.md'
+
+- Jackpot:
+  - 'Version v1.2':
+    - 'Български': 'bg/jpserver/index.md'
+    - 'English': 'en/jpserver/index.md'
+    - 'România': 'ro/jpserver/index.md'
+
+- CMS:
+  - 'Version v1.2':
+    - 'Начало': 'bg/colibri/v2_1/index.md'
+    - 'English': 'en/colibri/v2_1/index.md'
+    - 'România': 'ro/colibri/v2_1/index.md'
+  - 'Version v2.1':
+      - 'Начало': 'bg/colibri/v2_1/index.md'
+      - 'English': 'en/colibri/v2_1/index.md'
+      - 'România': 'ro/colibri/v2_1/index.md'
+
+- SMIB:
+  - 'Version v1.4':
+    - 'Начало': 'bg/smib/index.md'
+    - 'English': 'en/smib/index.md'
+    - 'România': 'ro/smib/index.md'
+
+- Visualization:
+  - 'Version v1.1':
+    - 'Начало': 'bg/visual/index.md'
+    - 'English': 'en/visual/index.md'
+    - 'România': 'ro/visual/index.md'

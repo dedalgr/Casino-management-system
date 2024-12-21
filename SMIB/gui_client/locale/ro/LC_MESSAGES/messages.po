@@ -1,0 +1,203 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-03-24 20:10+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: demon.py:211 yellow_skin.py:266 yellow_skin.py:289 yellow_skin.py:290
+#: yellow_skin.py:292 yellow_skin.py:294
+msgid "Приятна игра: "
+msgstr ""
+
+#: demon.py:227 yellow_skin.py:282 yellow_skin.py:305 yellow_skin.py:306
+#: yellow_skin.py:308 yellow_skin.py:310
+msgid "Текущ"
+msgstr ""
+
+#: demon.py:240 demon.py:253 yellow_skin.py:295 yellow_skin.py:308
+#: yellow_skin.py:318 yellow_skin.py:319 yellow_skin.py:321 yellow_skin.py:323
+msgid "Баланс"
+msgstr ""
+
+#: demon.py:266 yellow_skin.py:321 yellow_skin.py:344 yellow_skin.py:345
+#: yellow_skin.py:347 yellow_skin.py:349
+msgid "Изход"
+msgstr ""
+
+#: demon.py:341 demon.py:430 demon.py:675 demon.py:807 demon.py:843
+#: yellow_skin.py:401 yellow_skin.py:490 yellow_skin.py:743 yellow_skin.py:898
+#: yellow_skin.py:942 yellow_skin.py:425 yellow_skin.py:521 yellow_skin.py:786
+#: yellow_skin.py:944 yellow_skin.py:992 yellow_skin.py:991 yellow_skin.py:426
+#: yellow_skin.py:522 yellow_skin.py:787 yellow_skin.py:943 yellow_skin.py:428
+#: yellow_skin.py:524 yellow_skin.py:789 yellow_skin.py:945 yellow_skin.py:994
+#: yellow_skin.py:430 yellow_skin.py:526 yellow_skin.py:791 yellow_skin.py:948
+#: yellow_skin.py:997 yellow_skin.py:794 yellow_skin.py:952 yellow_skin.py:1001
+msgid "Текущ:"
+msgstr ""
+
+#: demon.py:422 yellow_skin.py:482 yellow_skin.py:513 yellow_skin.py:514
+#: yellow_skin.py:516 yellow_skin.py:518
+#, python-format
+msgid "Процент: %s"
+msgstr ""
+
+#: demon.py:424 yellow_skin.py:484 blue_skin.py:821 blue_skin.py:823
+#: blue_skin.py:904 blue_skin.py:906 yellow_skin.py:515 blue_skin.py:916
+#: blue_skin.py:918 blue_skin.py:917 blue_skin.py:919 yellow_skin.py:516
+#: blue_skin.py:930 blue_skin.py:932 yellow_skin.py:518 blue_skin.py:931
+#: blue_skin.py:933 yellow_skin.py:520 blue_skin.py:961 blue_skin.py:963
+#, python-format
+msgid "Кешаут на: %s"
+msgstr ""
+
+#: demon.py:562 yellow_skin.py:620 yellow_skin.py:663 yellow_skin.py:664
+#: yellow_skin.py:666 yellow_skin.py:668
+msgid "Отложи"
+msgstr ""
+
+#: demon.py:575 yellow_skin.py:633 yellow_skin.py:676 yellow_skin.py:677
+#: yellow_skin.py:679 yellow_skin.py:681
+msgid "Приеми"
+msgstr ""
+
+#: demon.py:648 demon.py:650 demon.py:814 demon.py:816 yellow_skin.py:705
+#: yellow_skin.py:715 yellow_skin.py:906 yellow_skin.py:911
+#, python-format
+msgid "Талони за томбoла: %s"
+msgstr ""
+
+#: demon.py:654 demon.py:656 demon.py:822 blue_skin.py:753 blue_skin.py:776
+#: yellow_skin.py:720 yellow_skin.py:723 yellow_skin.py:920 blue_skin.py:768
+#: blue_skin.py:794 blue_skin.py:796 blue_skin.py:841 blue_skin.py:870
+#: yellow_skin.py:763 yellow_skin.py:766 yellow_skin.py:970 blue_skin.py:852
+#: blue_skin.py:882 yellow_skin.py:969 blue_skin.py:853 blue_skin.py:883
+#: yellow_skin.py:764 yellow_skin.py:767 blue_skin.py:856 blue_skin.py:858
+#: blue_skin.py:860 blue_skin.py:896 yellow_skin.py:769 yellow_skin.py:972
+#: blue_skin.py:857 blue_skin.py:859 blue_skin.py:861 blue_skin.py:897
+#: yellow_skin.py:768 yellow_skin.py:771 yellow_skin.py:975 blue_skin.py:884
+#: blue_skin.py:886 blue_skin.py:888 blue_skin.py:924 yellow_skin.py:979
+#, python-format
+msgid "Мънибек: %s"
+msgstr ""
+
+#: demon.py:684 demon.py:851 demon.py:692 yellow_skin.py:752 yellow_skin.py:762
+#: yellow_skin.py:950 yellow_skin.py:796 yellow_skin.py:1001
+#: yellow_skin.py:1000 yellow_skin.py:797 yellow_skin.py:799
+#: yellow_skin.py:1003 yellow_skin.py:801 yellow_skin.py:1006
+#: yellow_skin.py:804 yellow_skin.py:1010
+msgid "Баланс:"
+msgstr ""
+
+#: demon.py:685 demon.py:852 yellow_skin.py:753 yellow_skin.py:951
+#: yellow_skin.py:797 yellow_skin.py:1002 yellow_skin.py:1001
+#: yellow_skin.py:798 yellow_skin.py:800 yellow_skin.py:1004 yellow_skin.py:802
+#: yellow_skin.py:1007 yellow_skin.py:805 yellow_skin.py:1011
+#, python-format
+msgid "Натрупан Мънибек: %s"
+msgstr ""
+
+#: demon.py:686 demon.py:853 yellow_skin.py:755 yellow_skin.py:953
+#, python-format
+msgid "Натрупани талони: %s"
+msgstr ""
+
+#: demon.py:692
+msgid "Басланс:"
+msgstr ""
+
+#: demon.py:699 demon.py:702 demon.py:805 yellow_skin.py:769 yellow_skin.py:772
+#: yellow_skin.py:896 yellow_skin.py:814 yellow_skin.py:817 yellow_skin.py:942
+#: yellow_skin.py:940 yellow_skin.py:815 yellow_skin.py:818 yellow_skin.py:941
+#: yellow_skin.py:820 yellow_skin.py:943 yellow_skin.py:819 yellow_skin.py:822
+#: yellow_skin.py:946 yellow_skin.py:825 yellow_skin.py:950
+#, python-format
+msgid "Приятна игра: %s"
+msgstr ""
+
+#: blue_skin.py:288 blue_skin.py:327 blue_skin.py:338 blue_skin.py:353
+msgid "Текущо!"
+msgstr ""
+
+#: blue_skin.py:288 blue_skin.py:327 blue_skin.py:338 blue_skin.py:353
+msgid "Статистика!"
+msgstr ""
+
+#: blue_skin.py:768 blue_skin.py:779 blue_skin.py:784 blue_skin.py:797
+#: blue_skin.py:776 blue_skin.py:783 blue_skin.py:799
+#, python-format
+msgid "Талони: %s"
+msgstr ""
+
+#: blue_skin.py:785
+msgid "Всяко поставяне на карта започва с 0 точки!"
+msgstr ""
+
+#: blue_skin.py:786
+msgid "За прехвърляне на точки извадете карта!"
+msgstr ""
+
+#: blue_skin.py:787
+msgid "ИЗПЛАЩАТ СЕ САМО ТОЧКИ ПРЕХВЪРЛЕНИ В СТАТИСТИКА!"
+msgstr ""
+
+#: blue_skin.py:800
+msgid "ЗА ИЗПЛАЩАНЕ НА ТЕКУЩО НАТРУПАНИТЕ ТОЧКИ"
+msgstr ""
+
+#: blue_skin.py:801
+msgid "МОЛЯ ИЗВАДЕТЕ КАРТАТА!"
+msgstr ""
+
+#: blue_skin.py:852 blue_skin.py:873 yellow_skin.py:748 yellow_skin.py:758
+#: yellow_skin.py:952 blue_skin.py:863 blue_skin.py:869 blue_skin.py:885
+#: yellow_skin.py:950 yellow_skin.py:958 blue_skin.py:864 blue_skin.py:870
+#: blue_skin.py:886 yellow_skin.py:749 yellow_skin.py:759 yellow_skin.py:951
+#: yellow_skin.py:959 blue_skin.py:871 blue_skin.py:879 blue_skin.py:881
+#: blue_skin.py:884 blue_skin.py:899 yellow_skin.py:751 yellow_skin.py:761
+#: yellow_skin.py:953 yellow_skin.py:961 blue_skin.py:872 blue_skin.py:874
+#: blue_skin.py:880 blue_skin.py:882 blue_skin.py:900 yellow_skin.py:753
+#: yellow_skin.py:763 yellow_skin.py:956 yellow_skin.py:964 blue_skin.py:901
+#: blue_skin.py:907 blue_skin.py:909 blue_skin.py:912 blue_skin.py:927
+#: yellow_skin.py:960 yellow_skin.py:968
+#, python-format
+msgid "Точки: %s"
+msgstr ""
+
+#: blue_skin.py:910 yellow_skin.py:504 blue_skin.py:922 blue_skin.py:923
+#: yellow_skin.py:505 blue_skin.py:936 yellow_skin.py:507 blue_skin.py:940
+#: yellow_skin.py:509 blue_skin.py:970
+#, python-format
+msgid "Пари по карта: %s"
+msgstr ""
+
+#: yellow_skin.py:331 yellow_skin.py:332 yellow_skin.py:334 yellow_skin.py:336
+msgid "IN/OUT"
+msgstr ""
+
+#: yellow_skin.py:453 yellow_skin.py:454 yellow_skin.py:456 yellow_skin.py:458
+msgid "Пари по карта: 0"
+msgstr ""
+
+#: yellow_skin.py:799 yellow_skin.py:1004 yellow_skin.py:1003
+#: yellow_skin.py:800 yellow_skin.py:802 yellow_skin.py:1006 yellow_skin.py:804
+#: yellow_skin.py:1009 yellow_skin.py:807 yellow_skin.py:1013
+#, python-format
+msgid "Натрупани точки: %s"
+msgstr ""
+
+#: blue_skin.py:938 blue_skin.py:968
+msgid "Изчакайте!"
+msgstr ""

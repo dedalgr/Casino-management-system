@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="bg">
+    <head>
+        <meta http-equiv="content-type" content="text/html;charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	</head>
+    <body>
+<style type="text/css">
+@page {
+            size: A4;
+            margin: 0in 0.44in 0.2in 0.44in;
+    }
+</style>
+<div class="col-md-9" role="main">
+
+<h5 id="no-3586" align="left">Ордер №: {{ nom }}<br />Начало на смяна: {{ start_dates }}<br />Край на смяна: {{ dates }}</h5>
+<h4 id="_2" align="center">Регион: {{ region }}<br />
+Тотал Зала: {{ total_zala }} лв.<br />
+Отчетени пари: {{ total }}</h4>
+<hr />
+<table style="width:100%; border-collapse:collapse;">
+<thead>
+<tr>
+<th align="left">Приходи</th>
+<th align="left">Сума</th>
+<th align="right">Разходи</th>
+<th align="right">Сума</th>
+</tr>
+</thead>
+<tbody>
+{% for i in range(len_row) %}
+<tr>
+{% if i+1 > prihodi|length %}
+<td align="left"></td>
+<td align="left"></td>
+{% else %}
+<td align="left">{{ prihodi[i][0] }}</td>
+<td align="left">{{ prihodi[i][1] }}</td>
+{% endif %}
+
+{% if i+1 > razhodi|length %}
+<td align="left"></td>
+<td align="left"></td>
+{% else %}
+<td align="right">{{ razhodi[i][0] }}</td>
+<td align="right">{{ razhodi[i][1] }}</td>
+{% endif %}
+</tr>
+{% endfor %}
+<tr>
+<td align="left">Натрупан Бил (не винаги се пресмята)</td>
+<td align="left">{{ bill }} лв.</td>
+<td align="right">Бил (изваден)</td>
+<td align="right">{{ bill_r }} лв.</td>
+</tr>
+<tr>
+<td align="left">Вход</td>
+<td align="left">{{ ins }} лв.</td>
+<td align="right">Изход</td>
+<td align="right">{{ out }} лв.</td>
+</tr>
+</tbody>
+<tfoot>
+<tr>
+<td align="left"><b>Общо:</b></td>
+<td align="left"><b>{{ prihodi_sum }} лв.</b></td>
+<td align="right"><b>Общо:</b></td>
+<td align="right"><b>{{ razhodi_sum }} лв.</b></td>
+</tr>
+</tfoot>
+</table>
+<hr />
+<br />
+<ul>
+<li>Липсa сума:.................. лв.</li>
+<li>Изплащане сума:.............. лв.</li>
+</ul>
+<h5 id="_3" align="right">Подпис: ................................<br />
+    ({{ user }})</h5></li>
+</div>
+</body>
+</html>
