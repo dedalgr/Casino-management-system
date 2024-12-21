@@ -14,4 +14,6 @@ Read the ColibriCMS/docs
 For DB use Postgresql wit user mistralcms and password use_system10 ot change it.
 
 If you not have RSA key the system close db port with iptables.
+To create new db use alembic and run ColibriCMS/gui_libs/right.py 
+user neme is root, pass is 123456
 
