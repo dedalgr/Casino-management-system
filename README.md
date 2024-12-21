@@ -13,5 +13,5 @@ Read the ColibriCMS/docs
 
 For DB use Postgresql wit user mistralcms and password use_system10 ot change it.
 
-If you not have comunicasion keyj the system close db port with iptables.
+If you not have RSA key the system close db port with iptables.
 
