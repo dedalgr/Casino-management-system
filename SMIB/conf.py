@@ -60,6 +60,7 @@ ueoPxaw6iNm9VeSRPseQnNxBqnsHlJNXEJivfjgjYZSydXqveA6h/fCvSJPS0fzXchgwwV
 0MFDZgk2/izVJkwpvSyKxwAWfzZTiJhN+8wXfph8Z1kmez7oP+LH64JnSEf2hER1UkqLvD
 PXd2T+byOsiDkAAAAPZGVkYWxAZGViaWFuLTExAQIDBA==
 -----END OPENSSH PRIVATE KEY-----'''
+
 class Conf(libs.config.ConfFile):
     def __init__(self, conf_file=CONF_FILE):
         try:

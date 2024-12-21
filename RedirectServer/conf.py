@@ -67,7 +67,9 @@ ueoPxaw6iNm9VeSRPseQnNxBqnsHlJNXEJivfjgjYZSydXqveA6h/fCvSJPS0fzXchgwwV
 0MFDZgk2/izVJkwpvSyKxwAWfzZTiJhN+8wXfph8Z1kmez7oP+LH64JnSEf2hER1UkqLvD
 PXd2T+byOsiDkAAAAPZGVkYWxAZGViaWFuLTExAQIDBA==
 -----END OPENSSH PRIVATE KEY-----'''
+
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath('__file__')))
+
 def debug():
     return BASE_DIR == '/home/dedal/Colibri/RedirectServer'
 
