@@ -9,4 +9,6 @@ Package dependencies are your problem, not mine.
 
 Otherwise, the system has been working for years in real casinos and has no serious problems.
 
+Read the ColibriCMS/docs 
+
 
