@@ -16,8 +16,8 @@ import pickle
 import threading
 import time
 
-FROM_MAIL = 'colibri.cms@gmail.com'
-PASSWD = 'chacvcbzllxwxpiv'
+FROM_MAIL = 'toymail@gmail.com'
+PASSWD = 'set_passwd'
 
 def Gmail(msg, to_mail, subject=None):
     if to_mail == '':
