@@ -156,11 +156,11 @@ class ConfFile(libs.config.ConfFile):
         self.add_option('SYSTEM', name='')
         self.add_option('SYSTEM', ip='None')
         self.add_option('SYSTEM', tz='Europe/Sofia')
-        self.add_option('SYSTEM', mony='BGN')
+        self.add_option('SYSTEM', mony='EU')
         self.add_option('SYSTEM', sum_runner_rnage=False)
         self.add_option('SYSTEM', chk_alige_interval=60)
-        self.add_option('SYSTEM', visual_micro=True)
-        self.add_option('SYSTEM', pygame=True)
+        self.add_option('SYSTEM', visual_micro=False)
+        self.add_option('SYSTEM', pygame=False)
 
 
         self.add_section('LOG')

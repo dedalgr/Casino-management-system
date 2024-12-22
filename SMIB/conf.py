@@ -119,7 +119,7 @@ class Conf(libs.config.ConfFile):
         # ===========================================================================
         self.add_section('SYSTEM')
         self.add_option('SYSTEM', version=VERSION)
-        self.add_option('SYSTEM', lang='bg')
+        self.add_option('SYSTEM', lang='en')
         self.add_option('SYSTEM', block_bonus_by_bet=False)
         self.add_option('SYSTEM', visual_port=2552)
         # self.add_option('SYSTEM', proto_sas=True)

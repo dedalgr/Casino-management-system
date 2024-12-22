@@ -261,7 +261,7 @@ class ConfFile(config.ConfFile):
         self.add_option('RFID', login=False)
 
         self.add_section('LANGUAGE')
-        self.add_option('LANGUAGE', use_lang='bg')
+        self.add_option('LANGUAGE', use_lang='en')
         self.add_option('LANGUAGE', bg='Български')
         self.add_option('LANGUAGE', en='English')
         self.add_option('LANGUAGE', ro='Românesc')
