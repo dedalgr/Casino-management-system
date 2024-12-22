@@ -37,3 +37,4 @@ If you want me to run it on your server, I'll ask you to pay for the effort.
 ![Cust](cust_group.png)
 ![Settings](setings.png)
 ![jp_Settings](jackpot_setings.png)
+![smib_display](cust_display.jpg)
