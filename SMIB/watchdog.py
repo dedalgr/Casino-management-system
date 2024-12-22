@@ -838,11 +838,11 @@ class Watchdog(Process):
             return True
 
     def backup_conf(self, **kwargs):
-        os.system('cp /home/colibri/colibri/smib.conf /home/colibri/')
+        os.system('cp /home/colibri/colibri/smib.conf /home/colibri/colibri/smib.conf~')
         return True
 
     def restory_conf(self, **kwargs):
-        os.system('cp /home/colibri/ /home/colibri/colibri/smib.conf')
+        os.system('cp /home/colibri/colibri/smib.conf~ /home/colibri/colibri/smib.conf')
         return True
 
     def event(self, evt, **kwargs):
