@@ -29,3 +29,11 @@ If you want me to run it on my server to try it, it's free.
 If you want me to run it on your server, I'll ask you to pay for the effort.
 
 
+![Login](login.png)
+![Main](check_smib.png)
+![Real time lock_select](real_time_lock.png)
+![Real_time_lock](lock_devise.png)
+![Order](crupie_report.png)
+![Cust](cust_group.png)
+![Settings](setings.png)
+![jp_Settings](jackpot_setings.png)
