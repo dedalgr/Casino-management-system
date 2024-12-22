@@ -6,9 +6,10 @@ from libs.cr import *
 import libs.rsa
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath('__file__')))
+
 def debug():
     # return False
-    return BASE_DIR == '/home/dedal/Colibri/Visual'
+    return BASE_DIR == '/home/dedal/Python/Casino-management-system'
 
 
 sys.path.append(os.path.abspath(os.path.join(os.path.abspath('.'))))
