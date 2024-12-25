@@ -4,7 +4,7 @@ import threading
 import json
 
 class CBOR():
-    def __init__(self, types="24c01", device=1, adress=0x50):
+    def __init__(self, types="24c2048", device=1, adress=0x50):
         self.types = types
         self.device = device
         self.adress = adress
@@ -53,6 +53,7 @@ class CBOR():
 
     def erese(self):
         self.eeprom.erase_file()
+        self.eeprom.write(b'\xff' * 2000)
         return True
 
     def keys(self):

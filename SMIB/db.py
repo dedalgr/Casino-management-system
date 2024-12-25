@@ -6,17 +6,22 @@ Created on 19.11.2018 г.
 '''
 
 import libs.db.exception
-from libs.db.file_db import SQLite, NoSQLiteDB, EmptyDB
+from libs.db.file_db import SQLite
+from libs.db.exception import NoSQLiteDB, EmptyDB
 from libs.db.mem_db import DictDB
 import os
-try:
-    from libs.eeprom import CBOR
-except ImportError:
-    os.system('sudo mount -o remount rw /')
-    os.system('sudo mount -o remount rw /var')
-    os.system('sudo pip install eeprom')
-    os.system('sudo reboot')
-os.system('sudo chmod 777 /sys/bus/i2c/devices/1-0050/eeprom')
+# try:
+from libs.eeprom import CBOR
+# except ImportError:
+#     os.system('sudo mount -o remount rw /')
+#     os.system('sudo mount -o remount rw /var')
+#     os.system('sudo pip install eeprom')
+#     cmd = "sudo sed -i 's/%s/%s/g' /usr/local/lib/python3.9/dist-packages/eeprom/eeprom.py" % ('addr=0', 'addr=31')
+#     os.system(cmd)
+#     cmd = "sudo sed -i 's/%s/%s/g' /usr/local/lib/python3.9/dist-packages/eeprom/cbor_eeprom.py" % ('for x in range(0, self._size, self._chunk_size):', 'for x in range(31, self._size, self._chunk_size):')
+#     os.system(cmd)
+#     os.system('sudo reboot')
+# os.system('sudo chmod 777 /sys/bus/i2c/devices/1-0050/eeprom')
 
 class NewDB():
 

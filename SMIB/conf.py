@@ -11,6 +11,19 @@ import os
 from subprocess import Popen, PIPE
 import libs
 import time
+try:
+    from eeprom import EEPROM, CBOR_EEPROM
+except ImportError:
+    os.system('sudo mount -o remount rw /')
+    os.system('sudo mount -o remount rw /var')
+    os.system('sudo pip install eeprom')
+    cmd = "sudo sed -i 's/%s/%s/g' /usr/local/lib/python3.9/dist-packages/eeprom/eeprom.py" % ('addr=0', 'addr=31')
+    os.system(cmd)
+    cmd = "sudo sed -i 's/%s/%s/g' /usr/local/lib/python3.9/dist-packages/eeprom/cbor_eeprom.py" % (
+    'for x in range(0, self._size, self._chunk_size):', 'for x in range(31, self._size, self._chunk_size):')
+    os.system(cmd)
+    os.system('sudo reboot')
+os.system('sudo chmod 777 /sys/bus/i2c/devices/1-0050/eeprom')
 
 VERSION = '2_1'
 # HOLDER = 'holder.so'
@@ -106,7 +119,7 @@ class Conf(libs.config.ConfFile):
             self.get('DB', 'eeprom', 'bool')
         except libs.config.NoOptionError:
             self.add_option('DB', eeprom=False)
-            self.add_option('DB', eeprom_types='24c512')
+            self.add_option('DB', eeprom_types='24c2048')
             self.add_option('DB', eeprom_device=1)
             self.add_option('DB', eeprom_adress=80)
         # if self.get('SAS', 'emg_type', 'int') == 0:
@@ -196,7 +209,7 @@ class Conf(libs.config.ConfFile):
         self.add_option('DB', iv_jump=False)
         self.add_option('DB', mem_type='DICT')
         self.add_option('DB', eeprom=True)
-        self.add_option('DB', eeprom_types='24c512')
+        self.add_option('DB', eeprom_types='24c2048')
         self.add_option('DB', eeprom_device=1)
         self.add_option('DB', eeprom_adress=80)
 
@@ -317,13 +330,19 @@ class Conf(libs.config.ConfFile):
         # pass
         a = os.popen('journalctl -g Olimex').read()
         if 'LIME' in a:
-            from pyA20 import i2c
-            eeprom_address = 0x50
-            i2c.init("/dev/i2c-1")
-            i2c.open(eeprom_address)
-            i2c.write([0x00, 0xFF])
-            i2c.close()
-            os.system('sudo reboot')
+            eprom = CBOR_EEPROM(self.get('DB', 'eeprom_types', 'str'), self.get('DB', 'eeprom_device', 'int'),
+                                self.get('DB', 'eeprom_adress', 'int'))
+            eprom.erase_file()
+            self.eeprom.write(b'\xff' * 2000, addr=0)
+            data = b'U\xaaLO\x06\x12\x00\x00J\x00\xff\xff\xff\xff\x00\xff\x1e\x000289048272BE'
+            eprom.write(data, addr=0)
+            # from pyA20 import i2c
+            # eeprom_address = 0x50
+            # i2c.init("/dev/i2c-1")
+            # i2c.open(eeprom_address)
+            # i2c.write([0x00, 0xFF])
+            # i2c.close()
+            # os.system('sudo reboot')
 
     def read_db_n(self):
         if os.name == 'posix':
