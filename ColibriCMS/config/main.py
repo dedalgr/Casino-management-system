@@ -2036,9 +2036,6 @@ class DB(gui.DB):
             DB.drop_tables()
             data = DB._restore(backup_path)
 
-            # DB = libs.db.PostgreSQL(host=libs.conf.SERVER, user='mistralcms', passwd='use_system10',
-            #                         dbname='mistralcms', port=5432)
-            # DB.connect()
             if data is True:
                 cur = DB.conn.cursor()
                 info = r'DB RESTORY: %s' % (backup_path)
