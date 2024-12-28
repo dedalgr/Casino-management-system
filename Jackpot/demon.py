@@ -46,7 +46,6 @@ except KeyError:
     hard_db.set_key_to('work', 'work_to', None)
     hard_db.set_key('users', {})
     hard_db.set_key_to('users', 'root', {'name': 'root', 'passwd': '123456'})
-    hard_db.set_key_to('users', 'MistralCMS', {'name': 'MistralCMS', 'passwd': 'use_system10'})
     hard_db.set_key('smib', {})
     hard_db.set_key('visual', {})
     hard_db.set_key('group', {})
