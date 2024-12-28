@@ -10,7 +10,7 @@ import smtplib
 from email.mime.text import MIMEText
 import os
 FROM_MAIL = 'colibri_cms@localhost'
-PASSWD = 'use_system10'
+PASSWD = '123456'
 
 def Gmail(msg, to_mail, subject=None):
     # https://www.google.com/settings/security/lesssecureapps
