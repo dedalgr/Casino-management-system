@@ -62,9 +62,6 @@ class NRA():
 
 
 if __name__ == '__main__':
-    # # pass
-    # CLIENT_ID = "2c773d7f-9d79-4275-9fbd-9176702a031f"
-    # CLIENT_SECRET = 'eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6ImtleS1pZCJ9.eyJzY29wZSI6WyJlcy1hcGktZXh0ZXJuYWw6YXBpLWV4dGVybmFsIiwiZXMtYXBpLWV4dGVybmFsOmdhbWJsaW5nIl0sImV4cCI6MTcwNDk5MDkzNywianRpIjoiMzg5MWE4MTctM2VkZi00OTBiLWIwNWYtZmNmYTRkOWQ5NThjIiwiY2xpZW50X2lkIjoiMmM3NzNkN2YtOWQ3OS00Mjc1LTlmYmQtOTE3NjcwMmEwMzFmIn0.NDz6X-ORPu0tyu6M2UzjglsirgGIvUjfAeB0tsR_PtoClVSh0Yp_0kaws0s0Svp7x51xbQr4xthjgbdtxHQ8oocKW4XIn1OS5Zt0nRlzOA6z-ZP38tH2O92w2BUfWo0dlhByicDmdCEreQmuwy-Bdgm2F6de1ua8GFgAqyDxmXhGrzKi_I0yKH1Xiv7KryeOzu_NwzhlOoyYrGf0h3iaODuaSeiBqk6ne7dLL9wf1wUjnwkr4a5zXjz_Un9UhfjFWEBOZEBrNOSfbYNkomX3DOuBCvzOy1eKQuwZtRKPPZEJTkWjlcv9miy4qcLRl5Rtm_xPfXVQEJrR1JB1aXU6nQ'
     client = NRA(CLIENT_ID, CLIENT_SECRET, debug=False)
     print(client.chk_egn('8703042226'))
     # ACCESS_TOKEN_URL = "https://public-api.nra.bg/gambling/gambling-test-service/register"
