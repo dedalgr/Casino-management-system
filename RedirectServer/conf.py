@@ -232,8 +232,8 @@ IP = CONF.get('SYSTEM', 'ip', 'str')
 DB_IP = CONF.get('SYSTEM', 'db_ip', 'str')
 # PROTOCOL = 'TCP'
 
-DB_USER = 'mistralcms'
-DB_PASS = 'use_system10'
+DB_USER = 'root'
+DB_PASS = '123456'
 DB_NAME = 'mistralcms'
 DB_DEBUG = CONF.get('SYSTEM', 'db_debug', 'bool')
 DB_TIMEOUT = CONF.get('SYSTEM', 'db_timeout', 'int')

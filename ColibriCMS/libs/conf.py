@@ -531,8 +531,8 @@ for i in ALL_SERVER:
 
 DB_IPTABLES= CONF.get('SYSTEM', 'db_iptables', 'bool')
 DB_NAME = 'mistralcms'
-DB_USER = 'mistralcms'
-DB_PASS = 'use_system10'
+DB_USER = 'root'
+DB_PASS = '123456'
 # DB_CONNECTION_TIMEOUT = CONF.get('DB', 'connect_timeout', 'int')
 # DB_TCP_CONNECTION_TIMEOUT = CONF.get('DB', 'tcp_user_timeout', 'int')
 # if SERVER == '127.0.0.1':
