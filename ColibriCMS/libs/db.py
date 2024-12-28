@@ -188,7 +188,7 @@ class PostgreSQL(SQLdb):
         return True
                 
 if __name__ == '__main__':
-    DB = PostgreSQL(host='127.0.0.1', user='mistralcms', passwd='use_system10', dbname='mistralcms', port=5432)
+    DB = PostgreSQL(host='127.0.0.1', user='root', passwd='123456', dbname='mistralcms', port=5432)
     DB.connect()
     # DB.db.execute('TRUNCATE system_log;')
     # DB.db.execute('TRUNCATE get_counter_error;')
