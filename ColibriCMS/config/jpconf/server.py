@@ -113,7 +113,10 @@ class Server(_gui.AllDial):
         self.parent = parent
         self.m_treeCtrl2.Hide()
         self.m_richText2.Show()
-        
+
+        self.m_button_help.SetLabel('Upgrade')
+        self.m_button_help.Show()
+
         self.m_button_del.SetLabel(_(u'CRC'))
         self.m_button_del.Show()
         self.m_button_del.SetToolTip(_(u"Проверка на CRC!"))
@@ -176,6 +179,7 @@ class Server(_gui.AllDial):
         self.m_richText2.SetValue(text)
         
         self.m_button_add.Bind( wx.EVT_BUTTON, self.OnActiv )
+        self.m_button_help.Bind(wx.EVT_BUTTON, self.OnSVN)
         self.m_button_del.Bind( wx.EVT_BUTTON, self.OnCRC )
         self.m_button_show.Bind( wx.EVT_BUTTON, self.OnAddName)
         self.m_button_free_4.Bind( wx.EVT_BUTTON, self.OnClose)
@@ -184,6 +188,12 @@ class Server(_gui.AllDial):
 #         self.m_button_free_1.Bind(wx.EVT_BUTTON, self.Language)
         self.Fit()
 
+    def OnSVN(self, event):
+        response = libs.udp.send('jp_svn_update', ip=libs.conf.JPSERVERIP, port=libs.conf.JPSERVERPORT)
+        if response is True:
+            wx.MessageBox(_(u'Информацията е записана успешно!'), 'Info', wx.OK | wx.ICON_INFORMATION)
+        else:
+            wx.MessageBox(_(u'Грешка при запис на информация!'), 'Error', wx.OK | wx.ICON_ERROR)
     def OnAddName(self, event):
         frame = Name(self)
         frame.ShowModal()

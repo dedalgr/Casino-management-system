@@ -19,6 +19,7 @@ import rtc  # @UnresolvedImport
 import time
 import datetime
 import games
+import threading
 
 DB = db.db.MemDB()
 SEND = udp.client.send
@@ -107,9 +108,16 @@ def CHANGE_CONF(**option):
     reboot()
 
 
-def svn_update(**kwargs):
+def soft_reboot_shedult(self, times=10, **kwargs):
+    time.sleep(times)
+    os.system('sudo service colibri restart')
+    return True
+
+
+
+def jp_svn_update(**kwargs):
     if 'url' not in kwargs:
-        url = 'svn://NEW_SVN_IP/home/dedal/svn/Jackpot_BIN/%s/' % (VERSION)
+        url = 'svn://77.71.12.197/home/dedal/svn/Jackpot_BIN/%s/' % (VERSION)
     else:
         url = kwargs['url']
 
@@ -127,6 +135,8 @@ def svn_update(**kwargs):
         passwd = 'smib_update'
     connect = subversion.SubVersion(folder=my_dir, user=user, passwd=passwd, url=url)
     connect.checkout()
+    t = threading.Thread(target=soft_reboot_shedult)
+    t.start()
     return connect.update()
 
 
@@ -411,7 +421,7 @@ GLOBAL_EVENT = {
     'chk_alife':chk_alife,
     'ALIFE':ALIFE,
     'CHANGE_CONF':CHANGE_CONF,
-    'svn_update':svn_update,
+    'jp_svn_update':jp_svn_update,
     'SET_DATE_TIME':SET_DATE_TIME,
     'GET_DATE_TIME':GET_DATE_TIME,
     'GET_DB_KEYS':GET_DB_KEYS,
