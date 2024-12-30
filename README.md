@@ -1,4 +1,4 @@
-## This is 100% working software for many years in real casinos.
+## This is 100% working software from many years in real casinos.
 
 Change your security key.
 Look in conf.py and cr.py
