@@ -455,7 +455,7 @@ class Sas():
         self.reg_key = '0000000000000000000000000000000000000000'
         self.POS_ID = 'B374A402'
         self.transaction = None
-        self.my_key = '44'
+        # self.my_key = '44'
         self.poll_adress = poll_adress
         self.denom = denom
         self.sas_dump = sas_dump
@@ -1814,10 +1814,11 @@ class Sas():
             len_transaction_id = '0' + len_transaction_id
         elif len(len_transaction_id) % 2 == 1:
             len_transaction_id = '0' + len_transaction_id
-        cmd = '72{my_key}{index}00{transfer_code}{mony_1}{mony_2}{mony_3}{transfer_flag}{asett}{key}{len_transaction}{transaction}{times}0C0000'.format(
+        cmd = '{index}00{transfer_code}{mony_1}{mony_2}{mony_3}{transfer_flag}{asett}{key}{len_transaction}{transaction}{times}0C0000'.format(
             transfer_code='11', index='00', mony_1=mony_1, mony_2=mony_2, mony_3=mony_3,
             asett=self.asset_number, key=self.reg_key, len_transaction=len_transaction_id, transaction=last_transaction,
-            times=my_time, my_key=self.my_key, transfer_flag='00')
+            times=my_time, transfer_flag='00')
+        cmd = '72' + hex(int(len(cmd) // 2))[2:] + cmd
         new_cmd = []
         count = 0
         for i in range(int(len(cmd) / 2)):
@@ -1897,10 +1898,11 @@ class Sas():
             len_transaction_id = '0' + len_transaction_id
         elif len(len_transaction_id) % 2 == 1:
             len_transaction_id = '0' + len_transaction_id
-        cmd = '72{my_key}{index}00{transfer_code}{mony_1}{mony_2}{mony_3}{transfer_flag}{asett}{key}{len_transaction}{transaction}{times}0C0000'.format(
+        cmd = '{index}00{transfer_code}{mony_1}{mony_2}{mony_3}{transfer_flag}{asett}{key}{len_transaction}{transaction}{times}0C0000'.format(
             transfer_code='00', index='00', mony_1=mony_1, mony_2=mony_2, mony_3=mony_3,
             asett=self.asset_number, key=self.reg_key, len_transaction=len_transaction_id, transaction=last_transaction,
-            times=my_time, my_key=self.my_key, transfer_flag='0a')
+            times=my_time, transfer_flag='0a')
+        cmd = '72' + hex(int(len(cmd) // 2))[2:] + cmd
         new_cmd = []
         count = 0
         for i in range(int(len(cmd) / 2)):
@@ -1983,10 +1985,11 @@ class Sas():
             len_transaction_id = '0' + len_transaction_id
         elif len(len_transaction_id) % 2 == 1:
             len_transaction_id = '0' + len_transaction_id
-        cmd = '72{my_key}{index}00{transfer_code}{mony_1}{mony_2}{mony_3}{transfer_flag}{asett}{key}{len_transaction}{transaction}{times}0C0000'.format(
+        cmd = '{index}00{transfer_code}{mony_1}{mony_2}{mony_3}{transfer_flag}{asett}{key}{len_transaction}{transaction}{times}0C0000'.format(
             transfer_code='80', index='00', mony_1=mony_1, mony_2=mony_2, mony_3=mony_3,
             asett=self.asset_number, key=self.reg_key, len_transaction=len_transaction_id, transaction=last_transaction,
-            times=my_time, my_key=self.my_key, transfer_flag='00')
+            times=my_time, transfer_flag='00')
+        cmd = '72' + hex(int(len(cmd) // 2))[2:] + cmd
         new_cmd = []
         count = 0
         for i in range(int(len(cmd) / 2)):
@@ -2056,10 +2059,11 @@ class Sas():
         elif len(len_transaction_id) % 2 == 1:
             len_transaction_id = '0' + len_transaction_id
 
-        cmd = '72{my_key}00{index}{transfer_code}{mony_1}{mony_2}{mony_3}{transfer_flag}{asett}{key}{len_transaction}{transaction}{times}0C0000'.format(
+        cmd = '00{index}{transfer_code}{mony_1}{mony_2}{mony_3}{transfer_flag}{asett}{key}{len_transaction}{transaction}{times}0C0000'.format(
             transfer_code='80', index='00', mony_1=mony_1, mony_2=mony_2, mony_3=mony_3,
             asett=self.asset_number, key=self.reg_key, len_transaction=len_transaction_id, transaction=last_transaction,
-            times=my_time, my_key=self.my_key, transfer_flag='02')
+            times=my_time, transfer_flag='02')
+        cmd = '72' + hex(int(len(cmd) // 2))[2:] + cmd
         new_cmd = []
         count = 0
         for i in range(int(len(cmd) / 2)):
@@ -2163,10 +2167,11 @@ class Sas():
         elif len(len_transaction_id) % 2 == 1:
             len_transaction_id = '0' + len_transaction_id
 
-        cmd = '72{my_key}{transfer_code}{index}{mony_1}{mony_2}{mony_3}{transfer_flag}{asett}{key}{len_transaction}{transaction}{times}0C0000'.format(
+        cmd = '{transfer_code}{index}{mony_1}{mony_2}{mony_3}{transfer_flag}{asett}{key}{len_transaction}{transaction}{times}0C0000'.format(
             transfer_code='0000', index='10', mony_1=mony_1, mony_2=mony_2, mony_3=mony_3,
             asett=self.asset_number, key=self.reg_key, len_transaction=len_transaction_id, transaction=last_transaction,
-            times=my_time, my_key=self.my_key, transfer_flag='00')
+            times=my_time, transfer_flag='00')
+        cmd = '72' + hex(int(len(cmd) // 2))[2:] + cmd
 
         new_cmd = []
         count = 0
@@ -2238,10 +2243,11 @@ class Sas():
             len_transaction_id = '0' + len_transaction_id
         elif len(len_transaction_id) % 2 == 1:
             len_transaction_id = '0' + len_transaction_id
-        cmd = '72{my_key}{transfer_code}{index}00{mony_1}{mony_2}{mony_3}{transfer_flag}{asett}{key}{len_transaction}{transaction}{times}0C0000'.format(
+        cmd = '{transfer_code}{index}00{mony_1}{mony_2}{mony_3}{transfer_flag}{asett}{key}{len_transaction}{transaction}{times}0C0000'.format(
             transfer_code='00', index='00', mony_1=mony_1, mony_2=mony_2, mony_3=mony_3,
             asett=self.asset_number, key=self.reg_key, len_transaction=len_transaction_id, transaction=last_transaction,
-            times=my_time, my_key=self.my_key, transfer_flag='00')
+            times=my_time, transfer_flag='00')
+        cmd = '72' + hex(int(len(cmd) // 2))[2:] + cmd
         new_cmd = []
         count = 0
         for i in range(int(len(cmd) / 2)):
@@ -3044,8 +3050,8 @@ if __name__ == '__main__':
     print(sas.start())
     print(sas.gaming_machine_ID())
     sas.transaction = sas.AFT_get_last_transaction()
-    print (sas.AFT_out())
-    print(sas.AFT_clean_transaction_poll())
-    while True:
-        print(sas.send_meters_10_15())
-        print(sas.total_dollar_value_of_bills_meter())
+    print (sas.AFT_in(10, lock_timeout=10))
+    # print(sas.AFT_clean_transaction_poll())
+    # while True:
+    #     print(sas.send_meters_10_15())
+    #     print(sas.total_dollar_value_of_bills_meter())
