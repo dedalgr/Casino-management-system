@@ -12,7 +12,7 @@
     size: auto
     }
     hr.new5 {
-  border:60px solid black;
+  border:10px solid black;
   border-radius: 20px;
 }
 hr.new4 {
@@ -26,9 +26,8 @@ h2.new1 {
         {% for item in range(count) %}
             {% if copy==True %}
                 <h2 class="new1" align="center">КОПИЕ</h2>
-            {% endif %}
-            {% if copy==False %}
-                <hr class="new5">
+            {% else %}
+                <h2 class="new1" align="center">ОРИГИНАЛ</h2>
             {% endif %}
             <hr class="new4">
             <h4 align="center">
