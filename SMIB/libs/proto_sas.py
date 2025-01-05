@@ -1201,13 +1201,15 @@ class Sas():
     def delay_game(self, delay_time=100, **kwargs):
         # 2E
         tmp = []
-        delay_time = str(delay_time)
-        delay = '' + ('0' * (4 - len(delay_time)) + delay_time)
-        cmd = [0x2E]
-        count = 0
-        for i in range(int(len(delay) / 2)):
-            cmd.append(int(delay[count:count + 2], 16))
-            count += 2
+        delay_time = self.mony_to_hex(delay_time, 2)
+        # delay_time = str(delay_time)
+        # delay = '' + ('0' * (4 - len(delay_time)) + delay_time)
+        cmd = '2E' + delay_time
+        cmd = self.cmd_to_list(cmd)
+        # count = 0
+        # for i in range(int(len(delay) / 2)):
+        #     cmd.append(int(delay[count:count + 2], 16))
+        #     count += 2
         if self._send_command(cmd, True, crc_need=True) == self.adress:
             return True
         else:
@@ -1780,23 +1782,14 @@ class Sas():
         my_time = datetime.datetime.now()
         my_time = datetime.datetime.strftime(my_time, '%m%d%Y')
         if mony == None:
-            mony = str(self.current_credits(denom=False))
-        else:
-            mony = str(int((mony / self.denom)))
-            mony = mony.replace('.', '')
-        mony = '0' * (10 - len(mony)) + mony
+            mony = self.current_credits(denom=True)
+        mony_1 = mony_2 = mony_3 = self.mony_to_hex(0, 5)
         if amount == 1:
-            mony_1 = mony
-            mony_2 = '0000000000'
-            mony_3 = '0000000000'
+            mony_1 = self.mony_to_hex(mony, 5)
         elif amount == 2:
-            mony_1 = '0000000000'
-            mony_2 = mony
-            mony_3 = '0000000000'
+            mony_2 = self.mony_to_hex(mony, 5)
         elif amount == 3:
-            mony_1 = '0000000000'
-            mony_2 = '0000000000'
-            mony_3 = mony
+            mony_3 = self.mony_to_hex(mony, 5)
         else:
             raise AFTBadAmount
         self.AFT_register()
@@ -1819,11 +1812,11 @@ class Sas():
             asett=self.asset_number, key=self.reg_key, len_transaction=len_transaction_id, transaction=last_transaction,
             times=my_time, transfer_flag='00')
         cmd = '72' + hex(int(len(cmd) // 2))[2:] + cmd
-        new_cmd = []
-        count = 0
-        for i in range(int(len(cmd) / 2)):
-            new_cmd.append(int(cmd[count:count + 2], 16))
-            count += 2
+        new_cmd = self.cmd_to_list(cmd)
+        # count = 0
+        # for i in range(int(len(cmd) / 2)):
+        #     new_cmd.append(int(cmd[count:count + 2], 16))
+        #     count += 2
 
         response = None
         # self.AFT_register()
@@ -1864,23 +1857,14 @@ class Sas():
         my_time = datetime.datetime.now()
         my_time = datetime.datetime.strftime(my_time, '%m%d%Y')
         if mony == None:
-            mony = str(self.current_credits(denom=False))
-        else:
-            mony = str(int((mony / self.denom)))
-            mony = mony.replace('.', '')
-        mony = '0' * (10 - len(mony)) + mony
+            mony = self.current_credits(denom=True)
+        mony_1 = mony_2 = mony_3 = self.mony_to_hex(0, 5)
         if amount == 1:
-            mony_1 = mony
-            mony_2 = '0000000000'
-            mony_3 = '0000000000'
+            mony_1 = self.mony_to_hex(mony, 5)
         elif amount == 2:
-            mony_1 = '0000000000'
-            mony_2 = mony
-            mony_3 = '0000000000'
+            mony_2 = self.mony_to_hex(mony, 5)
         elif amount == 3:
-            mony_1 = '0000000000'
-            mony_2 = '0000000000'
-            mony_3 = mony
+            mony_3 = self.mony_to_hex(mony, 5)
         else:
             raise AFTBadAmount
         self.AFT_register()
@@ -1903,11 +1887,7 @@ class Sas():
             asett=self.asset_number, key=self.reg_key, len_transaction=len_transaction_id, transaction=last_transaction,
             times=my_time, transfer_flag='0a')
         cmd = '72' + hex(int(len(cmd) // 2))[2:] + cmd
-        new_cmd = []
-        count = 0
-        for i in range(int(len(cmd) / 2)):
-            new_cmd.append(int(cmd[count:count + 2], 16))
-            count += 2
+        new_cmd = self.cmd_to_list(cmd)
 
         response = None
         # self.AFT_register()
@@ -1951,23 +1931,14 @@ class Sas():
         my_time = datetime.datetime.now()
         my_time = datetime.datetime.strftime(my_time, '%m%d%Y')
         if mony == None:
-            mony = str(self.current_credits(denom=False))
-        else:
-            mony = str(int((mony / self.denom)))
-            mony = mony.replace('.', '')
-        mony = '0' * (10 - len(mony)) + mony
+            mony = self.current_credits(denom=True)
+        mony_1 = mony_2 = mony_3 = self.mony_to_hex(0, 5)
         if amount == 1:
-            mony_1 = mony
-            mony_2 = '0000000000'
-            mony_3 = '0000000000'
+            mony_1 = self.mony_to_hex(mony, 5)
         elif amount == 2:
-            mony_1 = '0000000000'
-            mony_2 = mony
-            mony_3 = '0000000000'
+            mony_2 = self.mony_to_hex(mony, 5)
         elif amount == 3:
-            mony_1 = '0000000000'
-            mony_2 = '0000000000'
-            mony_3 = mony
+            mony_3 = self.mony_to_hex(mony, 5)
         else:
             raise AFTBadAmount
         self.AFT_register()
@@ -1990,11 +1961,7 @@ class Sas():
             asett=self.asset_number, key=self.reg_key, len_transaction=len_transaction_id, transaction=last_transaction,
             times=my_time, transfer_flag='00')
         cmd = '72' + hex(int(len(cmd) // 2))[2:] + cmd
-        new_cmd = []
-        count = 0
-        for i in range(int(len(cmd) / 2)):
-            new_cmd.append(int(cmd[count:count + 2], 16))
-            count += 2
+        new_cmd = self.cmd_to_list(cmd)
 
         response = None
         # self.AFT_register()
@@ -2035,23 +2002,7 @@ class Sas():
 
         my_time = datetime.datetime.now()
         my_time = datetime.datetime.strftime(my_time, '%m%d%Y')
-        mony = '0000000000'
-
-        if amount == 1:
-            mony_1 = mony
-            mony_2 = '0000000000'
-            mony_3 = '0000000000'
-        elif amount == 2:
-            mony_1 = '0000000000'
-            mony_2 = mony
-            mony_3 = '0000000000'
-        elif amount == 3:
-            mony_1 = '0000000000'
-            mony_2 = '0000000000'
-            mony_3 = mony
-        else:
-            raise AFTBadAmount
-
+        mony_1 = mony_2 = mony_3 = self.mony_to_hex(0, 5)
         last_transaction = self.AFT_format_transaction()
         len_transaction_id = hex(len(last_transaction) // 2)[2:]
         if len(len_transaction_id) < 2:
@@ -2064,11 +2015,7 @@ class Sas():
             asett=self.asset_number, key=self.reg_key, len_transaction=len_transaction_id, transaction=last_transaction,
             times=my_time, transfer_flag='02')
         cmd = '72' + hex(int(len(cmd) // 2))[2:] + cmd
-        new_cmd = []
-        count = 0
-        for i in range(int(len(cmd) / 2)):
-            new_cmd.append(int(cmd[count:count + 2], 16))
-            count += 2
+        new_cmd = self.cmd_to_list(cmd)
         self.AFT_register()
 
         response = None
@@ -2133,21 +2080,13 @@ class Sas():
 
         my_time = datetime.datetime.now()
         my_time = datetime.datetime.strftime(my_time, '%m%d%Y')
-        mony = str(int((mony / self.denom)))
-        mony = mony.replace('.', '')
-        mony = '0' * (10 - len(mony)) + mony
+        mony_1 = mony_2 = mony_3 = self.mony_to_hex(0, 5)
         if amount == 1:
-            mony_1 = mony
-            mony_2 = '0000000000'
-            mony_3 = '0000000000'
+            mony_1 = self.mony_to_hex(mony, 5)
         elif amount == 2:
-            mony_1 = '0000000000'
-            mony_2 = mony
-            mony_3 = '0000000000'
+            mony_2 = self.mony_to_hex(mony, 5)
         elif amount == 3:
-            mony_1 = '0000000000'
-            mony_2 = '0000000000'
-            mony_3 = mony
+            mony_3 = self.mony_to_hex(mony, 5)
         else:
             raise AFTBadAmount
         self.AFT_register()
@@ -2173,11 +2112,7 @@ class Sas():
             times=my_time, transfer_flag='00')
         cmd = '72' + hex(int(len(cmd) // 2))[2:] + cmd
 
-        new_cmd = []
-        count = 0
-        for i in range(int(len(cmd) / 2)):
-            new_cmd.append(int(cmd[count:count + 2], 16))
-            count += 2
+        new_cmd = self.cmd_to_list(cmd)
 
         response = None
         try:
@@ -2210,21 +2145,13 @@ class Sas():
             return None
         my_time = datetime.datetime.now()
         my_time = datetime.datetime.strftime(my_time, '%m%d%Y')
-        mony = str(int((mony / self.denom)))
-        mony = mony.replace('.', '')
-        mony = '0' * (10 - len(mony)) + mony
+        mony_1 = mony_2 = mony_3 = self.mony_to_hex(0, 5)
         if amount == 1:
-            mony_1 = mony
-            mony_2 = '0000000000'
-            mony_3 = '0000000000'
+            mony_1 = self.mony_to_hex(mony, 5)
         elif amount == 2:
-            mony_1 = '0000000000'
-            mony_2 = mony
-            mony_3 = '0000000000'
+            mony_2 = self.mony_to_hex(mony, 5)
         elif amount == 3:
-            mony_1 = '0000000000'
-            mony_2 = '0000000000'
-            mony_3 = mony
+            mony_3 = self.mony_to_hex(mony, 5)
         else:
             raise AFTBadAmount
         self.AFT_register()
@@ -2248,11 +2175,7 @@ class Sas():
             asett=self.asset_number, key=self.reg_key, len_transaction=len_transaction_id, transaction=last_transaction,
             times=my_time, transfer_flag='00')
         cmd = '72' + hex(int(len(cmd) // 2))[2:] + cmd
-        new_cmd = []
-        count = 0
-        for i in range(int(len(cmd) / 2)):
-            new_cmd.append(int(cmd[count:count + 2], 16))
-            count += 2
+        new_cmd = self.cmd_to_list(cmd)
         response = None
         # self.AFT_register()
         # if lock_timeout == 0:
@@ -2299,10 +2222,7 @@ class Sas():
         # time.sleep(0.7)
         cmd = '7202FF00'
         count = 0
-        new_cmd = []
-        for i in range(int(len(cmd) / 2)):
-            new_cmd.append(int(cmd[count:count + 2], 16))
-            count += 2
+        new_cmd = self.cmd_to_list(cmd)
         response = None
         try:
             data = self._send_command(new_cmd, crc_need=True, size=90)
@@ -2371,10 +2291,7 @@ class Sas():
         cmd.extend(self.bcd_coder_array(lock_timeout, 2))
 
         cmd[1] = len(transaction_ID) + len(transaction_ID) + 53
-        new_cmd = []
-        for i in cmd:
-            if type(i) == str:
-                new_cmd.append(int(i, 16))
+        new_cmd = self.cmd_to_list(cmd)
         cmd = new_cmd
         data = self._send_command(cmd, crc_need=True)
         if (data is not None):
@@ -2540,23 +2457,22 @@ class Sas():
 
     def AFT_game_lock_and_status_request(self, lock_code='00', lock_timeout=200, condition='01', **kwargs):
         # 74
-        lock_time = str(lock_timeout)
-        if len(lock_time) == 1:
-            lock_time = '000%s' % (lock_time)
-        elif len(lock_time) == 2:
-            lock_time = '00%s' % (lock_time)
-        elif len(lock_time) == 3:
-            lock_time = '0%s' % (lock_time)
-        elif len(lock_time) == 4:
-            lock_time = '%s' % (lock_time)
-        else:
-            raise ValueError('Invalid time')
+        try:
+            lock_time = self.mony_to_hex(lock_timeout, 2)
+        except Exception as e:
+            raise ValueError(e.__str__())
+        # if len(lock_time) == 1:
+        #     lock_time = '000%s' % (lock_time)
+        # elif len(lock_time) == 2:
+        #     lock_time = '00%s' % (lock_time)
+        # elif len(lock_time) == 3:
+        #     lock_time = '0%s' % (lock_time)
+        # elif len(lock_time) == 4:
+        #     lock_time = '%s' % (lock_time)
+        # else:
+        #     raise ValueError('Invalid time')
         cmd = '74%s%s%s' % (lock_code, condition, lock_time)
-        new_cmd = []
-        count = 0
-        for i in range(int(len(cmd) / 2)):
-            new_cmd.append(int(cmd[count:count + 2], 16))
-            count += 2
+        new_cmd = self.cmd_to_list(cmd)
         response = self._send_command(new_cmd, crc_need=True, size=40)
         if (response):
             aft_statement = {}
@@ -2705,21 +2621,22 @@ class Sas():
         else:
             game_selected = games
         if game_selected == None:
-            return None
+            return 'NoGame'
         elif game_selected == 0:
-            return None
+            return 'NoGame'
         elif game_selected < 0:
-            return None
-
-        cmd = str(int(round(mony / self.denom, 2)))
-        # cmd = cmd.replace('.', '')
-        cmd = '0' * (8 - len(cmd)) + cmd
-        my_cmd = cmd + tax
-        cmd = [0x8A]
-        count = 0
-        for i in range(int(len(my_cmd) / 2)):
-            cmd.append(int(my_cmd[count:count + 2], 16))
-            count += 2
+            return 'NoGame'
+        cmd = '8A' + self.mony_to_hex(mony, 4) + tax
+        cmd = self.cmd_to_list(cmd)
+        # cmd = str(int(round(mony / self.denom, 2)))
+        # # cmd = cmd.replace('.', '')
+        # cmd = '0' * (8 - len(cmd)) + cmd
+        # my_cmd = cmd + tax
+        # cmd = [0x8A]
+        # count = 0
+        # for i in range(int(len(my_cmd) / 2)):
+        #     cmd.append(int(my_cmd[count:count + 2], 16))
+        #     count += 2
         if (self._send_command(cmd, True, crc_need=True) == self.adress):
             return True
         # else:
@@ -2903,8 +2820,6 @@ class Sas():
         # FF
         return
 
-    def bcd_coder_array(self, value=0, lenght=4, **kwargs):
-        return self.int_to_bcd(value, lenght)
 
     def bytearray(self, data):
         return data.hex()
@@ -2913,37 +2828,46 @@ class Sas():
         data = data.replace('-', '')
         return data
 
-    def int_to_bcd(self, number=0, lenght=5, **kwargs):
-        number = str(int((number / self.denom)))
-        number = number.replace('.', '')
 
-        number = '0' * (lenght - len(number)) + number
-        return number
-        # n = 0
+    def bcd_coder_array(self, value=0, lenght=5):
+        return self.int_to_bcd(value, lenght)
 
-        # m = 0
-        # bval = 0
-        # p = lenght - 1
-        # result = []
-        # for i in range(0, lenght):
-        #     result.extend([0x00])
-        # while (p >= 0):
-        #     if (number != 0):
-        #         digit = number % 10
-        #         number = number / 10
-        #         m = m + 1
-        #     else:
-        #         digit = 0
-        #     if (n & 1):
-        #         bval |= digit << 4
-        #         result[p] = bval
-        #         p = p - 1
-        #         bval = 0
-        #     else:
-        #         bval = digit
-        #     n = n + 1
-        # return result
+    def int_to_bcd(self, number=0, lenght=5):
+        n = 0
+        m = 0
+        bval = 0
+        p = lenght - 1
+        result = []
+        for i in range(0, lenght):
+            result.extend([0x00])
+        while (p >= 0):
+            if (number != 0):
+                digit = int(number % 10)
+                number = number / 10
+                m = m + 1
+            else:
+                digit = 0
+            if (n & 1):
+                bval |= digit << 4
+                result[p] = bval
+                p = p - 1
+                bval = 0
+            else:
+                bval = digit
+            n = n + 1
+        return result
 
+    def mony_to_hex(self, mony=0, lenght=5):
+        mony = str(int((mony / self.denom)))
+        mony = mony.replace('.', '')
+        lenght = lenght * 2
+        mony = '0' * (lenght - len(mony)) + mony
+        return mony
+
+    def cmd_to_list(self, cmd):
+        intArray = list(map(lambda x: int(x, 16),
+                            [cmd[i:i + 2] for i in range(0, len(cmd), 2)]))
+        return intArray
 
 class SAS_USB(Sas):
 
@@ -3047,6 +2971,7 @@ def test_aft(types='in', mony=1, port='/dev/ttyS4'):
 
 if __name__ == '__main__':
     sas = Sas('/dev/ttyS4')
+    sas.mony_to_hex(10.00)
     print(sas.start())
     print(sas.gaming_machine_ID())
     sas.transaction = sas.AFT_get_last_transaction()

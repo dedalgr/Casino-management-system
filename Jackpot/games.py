@@ -76,15 +76,19 @@ def send_to_visual_direct(evt, ip, grup, level, value, mashin, bet=None, sas=Tru
         exception.log.stderr_logger.critical(e, exc_info=True)
 
 def log_write(level, grup, down_sum, down_on, min_bet=0, chk=True):
-    t = time.time() + conf.UDP_TIMEOUT
-    while True:
-        if DB.check_for_lock() != b'DOWN_ON':
-            DB.set_lock(model='DOWN_ON')
-            break
-        else:
-            return False
-        if time.time() >= t:
-            return False
+    # t = time.time() + conf.UDP_TIMEOUT
+
+    tmp = DB.check_for_lock()
+    if tmp != b'DOWN_ON':
+        DB.set_lock(model='DOWN_ON')
+    else:
+        return False
+    #
+    #         break
+    #     else:
+    #         return False
+    #     if time.time() >= t:
+    #         return False
     DB.set_key('backup_log_stop', True)
     # tmp = DB.check_for_lock()
     # if tmp == b'DOWN_ON':
@@ -120,13 +124,14 @@ def log_write(level, grup, down_sum, down_on, min_bet=0, chk=True):
                         min_bet=min_bet,
                         port=conf.UDP_SMIB_PORT,
                         timeout=conf.UDP_TIMEOUT+2)
+        print('ERROR, timeout %s', response)
 
         if response == None and chk == True:
             response = SEND(ip=down_on,
                             evt='send_chk_jp_down',
                             port=conf.UDP_SMIB_PORT,
                             timeout=conf.UDP_TIMEOUT)
-            print('ERROR, timeout %s', response)
+            print('ERROR chk, timeout %s', response)
         if response == True or response == None:
             down_on = mashin[down_on]['licenz']
             send_to_visual(evt='DOWN', grup=grup, level=level, value=down_sum, mashin=down_on, sas=sas, timeout=5)
@@ -145,6 +150,7 @@ def log_write(level, grup, down_sum, down_on, min_bet=0, chk=True):
             except Exception as e:
                 exception.log.stderr_logger.critical(e, exc_info=True)
             DB.set_key('backup_log_stop', False)
+            DB.set_lock(model=tmp)
             return True
 
     elif sas == False:
@@ -166,9 +172,11 @@ def log_write(level, grup, down_sum, down_on, min_bet=0, chk=True):
         down_stop[grup] = time.time() + 3600
         DB.set_key('down_stop', down_stop)
         DB.set_key('backup_log_stop', False)
+        DB.set_lock(model=tmp)
         return True
     DB.set_key('backup_log_stop', False)
     log_db.close()
+    DB.set_lock(model=tmp)
     return False
 
 
