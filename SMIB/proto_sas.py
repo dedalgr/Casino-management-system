@@ -1603,6 +1603,7 @@ class Sas(Process):
 
     def block_out(self, mony, cust=False, out=None):
         # self.clear_meter()
+        self.player_bonus_initial = mony
         if self.block_bonus_by_bet is False:
             return self.block_out_by_credit(mony, cust, out)
         else:
@@ -2323,12 +2324,12 @@ class Sas(Process):
                     self.mem_server.set('PLAYER_BONUS_REVERT', [0, 0])
                     self.bonus_revert_old_bet = None
                     self.player_bonus_initial = 0
-                # elif (credit - self.no_cust_bonus_out_befor[0]) < self.cust_hold_mony and self.player_bonus_initial == 0 and reset is True:
-                #     self.get_single_meter(command='enable bill')
-                #     self.no_cust_bonus_out_befor = None
-                #     self.mem_server.set('PLAYER_BONUS_REVERT', [0, 0])
-                #     self.bonus_revert_old_bet = None
-                #     self.player_bonus_initial = 0
+                elif credit < self.cust_hold_mony and self.player_bonus_initial == 0 and reset is True:
+                    self.get_single_meter(command='enable bill')
+                    self.no_cust_bonus_out_befor = None
+                    self.mem_server.set('PLAYER_BONUS_REVERT', [0, 0])
+                    self.bonus_revert_old_bet = None
+                    self.player_bonus_initial = 0
         else:
             if self.no_cust_bonus_out_befor != None:
                 won = self.meter['won'] - self.no_cust_bonus_out_befor[2]
@@ -2393,7 +2394,7 @@ class Sas(Process):
                         if self.slee_on_down is True:
                             time.sleep(self.sas_sleep)
                         if self.emg_type != 4:
-                            self.sas.AFT_out()
+                            self.sas.AFT_out(lock_timeout=0)
                             if self.slee_on_down is True:
                                 time.sleep(self.sas_sleep)
                             data = self.sas.AFT_clean_transaction_poll()
@@ -2688,7 +2689,7 @@ class Sas(Process):
                     elif not self.sas.transaction and self.use_aft is True:
                         if self.slee_on_down is True:
                             time.sleep(self.sas_sleep)
-                        if not self.db.get('AFT_TRANSACTION'):
+                        if not self.db.get('AFT_TRANSACTION') or self.db.get('AFT_TRANSACTION') == 0:
                             self.sas.transaction = self.sas.AFT_get_last_transaction()
                             for i in range(3):
                                 if self.sas.transaction:
@@ -2948,31 +2949,31 @@ class Sas(Process):
                             if self.db.get('PLAYER_IN_NRA') is True:
                                 self.db.set('PLAYER_IN_NRA', False)
                                 self.sas.startup()
-                                if self.emg_type == 5 or self.emg_type == 6 or self.emg_type == 7 or self.emg_type == 9:
-                                    self.clear_meter()
-                                    out = self.meter['out']
-                                    if out > self.meter['out']:
-                                        # self.out_event()
-                                        if cache_out_pressed is False and aft_request is False:
-                                            self.out_event()
-                                            rec_time = time.time()
+                            elif self.emg_type == 5 or self.emg_type == 6 or self.emg_type == 7 or self.emg_type == 9:
+                                # self.clear_meter()
+                                out = self.sas.total_cancelled_credits()
+                                if out > self.meter['out']:
+                                    # self.out_event()
+                                    if cache_out_pressed is False and aft_request is False:
+                                        self.out_event()
+                                        rec_time = time.time()
                                             # if self.use_gpoll is True:
-                                            while True:
+                                        while True:
+                                            try:
+                                                self.event = self.sas.events_poll()
+                                            except Exception as e:
                                                 try:
+                                                    time.sleep(self.sas_sleep)
                                                     self.event = self.sas.events_poll()
                                                 except Exception as e:
-                                                    try:
-                                                        time.sleep(self.sas_sleep)
-                                                        self.event = self.sas.events_poll()
-                                                    except Exception as e:
-                                                        self.log.error(e, exc_info=True)
-                                                        self.event = 'No activity'
-                                                if self.event != 'Self test or operator menu has been exited':
-                                                    break
-                                                if rec_time + 10 <= time.time():
-                                                    break
-                                    cache_out_pressed = False
-                                    aft_request = False
+                                                    self.log.error(e, exc_info=True)
+                                                    self.event = 'No activity'
+                                            if self.event != 'Self test or operator menu has been exited':
+                                                break
+                                            if rec_time + 10 <= time.time():
+                                                break
+                                cache_out_pressed = False
+                                aft_request = False
                         elif self.event == 'Self test or operator menu has been exited':
                             if self.db.get('PLAYER_IN_NRA') is True:
                                 self.db.set('PLAYER_IN_NRA', False)

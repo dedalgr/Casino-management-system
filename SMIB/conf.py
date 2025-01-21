@@ -12,19 +12,13 @@ from subprocess import Popen, PIPE
 import libs
 import time
 try:
-    from eeprom import EEPROM, CBOR_EEPROM
-except ImportError:
+    import cbor2
+except:
     os.system('sudo mount -o remount rw /')
     os.system('sudo mount -o remount rw /var')
-    os.system('sudo pip install eeprom')
-    cmd = "sudo sed -i 's/%s/%s/g' /usr/local/lib/python3.9/dist-packages/eeprom/eeprom.py" % ('addr=0', 'addr=31')
-    os.system(cmd)
-    cmd = "sudo sed -i 's/%s/%s/g' /usr/local/lib/python3.9/dist-packages/eeprom/cbor_eeprom.py" % (
-    'for x in range(0, self._size, self._chunk_size):', 'for x in range(31, self._size, self._chunk_size):')
-    os.system(cmd)
-    os.system('sudo reboot')
-os.system('sudo chmod 777 /sys/bus/i2c/devices/1-0050/eeprom')
+    os.system('sudo pip install cbor2 --yes')
 
+os.system('sudo chmod 777 /sys/bus/i2c/devices/1-0050/eeprom')
 VERSION = '2_1'
 # HOLDER = 'holder.so'
 CONF_FILE = 'smib.conf'
@@ -320,29 +314,6 @@ class Conf(libs.config.ConfFile):
         self.add_option('SAS', sas_dump=False)
         self.add_option('SAS', last_aft_transaction_from_emg=False)
         self.change_pass()
-        try:
-            self.fix_eeprom()
-        except:
-            pass
-        # self.resize_var()
-
-    def fix_eeprom(self):
-        # pass
-        a = os.popen('journalctl -g Olimex').read()
-        if 'LIME' in a:
-            eprom = CBOR_EEPROM(self.get('DB', 'eeprom_types', 'str'), self.get('DB', 'eeprom_device', 'int'),
-                                self.get('DB', 'eeprom_adress', 'int'))
-            eprom.erase_file()
-            self.eeprom.write(b'\xff' * 2000, addr=0)
-            data = b'U\xaaLO\x06\x12\x00\x00J\x00\xff\xff\xff\xff\x00\xff\x1e\x000289048272BE'
-            eprom.write(data, addr=0)
-            # from pyA20 import i2c
-            # eeprom_address = 0x50
-            # i2c.init("/dev/i2c-1")
-            # i2c.open(eeprom_address)
-            # i2c.write([0x00, 0xFF])
-            # i2c.close()
-            # os.system('sudo reboot')
 
     def read_db_n(self):
         if os.name == 'posix':

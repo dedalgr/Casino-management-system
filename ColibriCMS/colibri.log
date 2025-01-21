@@ -1,0 +1,124 @@
+2024-12-22 11:41:30,883:WARNING:STDERR:CMS:Traceback (most recent call last):
+2024-12-22 11:41:30,884:WARNING:STDERR:CMS:  File "/home/dedal/Python/Casino-management-system/ColibriCMS/main.py", line 8, in <module>
+2024-12-22 11:41:30,884:WARNING:STDERR:CMS:from demon import run
+2024-12-22 11:41:30,884:WARNING:STDERR:CMS:  File "/home/dedal/Python/Casino-management-system/ColibriCMS/demon.py", line 16, in <module>
+2024-12-22 11:41:30,884:WARNING:STDERR:CMS:import libs
+2024-12-22 11:41:30,884:WARNING:STDERR:CMS:  File "/home/dedal/Python/Casino-management-system/ColibriCMS/libs/__init__.py", line 127, in <module>
+2024-12-22 11:41:30,884:WARNING:STDERR:CMS:alife = udp.send('server_alive', ip=conf.SERVER)
+2024-12-22 11:41:30,884:WARNING:STDERR:CMS:  File "/home/dedal/Python/Casino-management-system/ColibriCMS/libs/udp.py", line 43, in send
+2024-12-22 11:41:30,885:WARNING:STDERR:CMS:response = my_client.send(evt, **kwargs)
+2024-12-22 11:41:30,885:WARNING:STDERR:CMS:  File "/home/dedal/Python/Casino-management-system/ColibriCMS/libs/sock/udp_socket/client.py", line 145, in send
+2024-12-22 11:41:30,885:WARNING:STDERR:CMS:response = self.getfrom()
+2024-12-22 11:41:30,886:WARNING:STDERR:CMS:  File "/home/dedal/Python/Casino-management-system/ColibriCMS/libs/sock/udp_socket/client.py", line 115, in getfrom
+2024-12-22 11:41:30,886:WARNING:STDERR:CMS:data = self.s.recv(self.udp_buffer)
+2024-12-22 11:41:30,886:WARNING:STDERR:CMS:KeyboardInterrupt
+2024-12-22 11:41:30,886:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:41:30,886:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:41:30,886:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:41:30,886:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:41:30,886:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:41:30,887:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:41:30,887:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:41:30,887:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:41:30,887:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:41:30,887:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:41:30,887:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:41:30,887:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:44:04,125:WARNING:STDOUT:CMS:pygame 1.9.6
+2024-12-22 11:44:04,126:WARNING:STDOUT:CMS:Hello from the pygame community. https://www.pygame.org/contribute.html
+2024-12-22 11:44:14,709:ERROR:STDERR:CMS:
+Traceback (most recent call last):
+  File "/home/dedal/Python/Casino-management-system/ColibriCMS/libs/sock/udp_socket/client.py", line 125, in getfrom
+    data = self.crypt_decrypt(data)
+  File "/home/dedal/Python/Casino-management-system/ColibriCMS/libs/sock/udp_socket/client.py", line 80, in crypt_decrypt
+    data = self.crypt.decrypt(data)
+  File "/home/dedal/Python/Casino-management-system/ColibriCMS/libs/cr.py", line 73, in decrypt
+    my_message = self.fernet.decrypt(my_message)
+  File "/usr/local/lib/python3.9/dist-packages/cryptography/fernet.py", line 84, in decrypt
+    timestamp, data = Fernet._get_unverified_token_data(token)
+  File "/usr/local/lib/python3.9/dist-packages/cryptography/fernet.py", line 118, in _get_unverified_token_data
+    raise InvalidToken
+cryptography.fernet.InvalidToken
+2024-12-22 11:44:14,720:ERROR:STDERR:CMS:
+Traceback (most recent call last):
+  File "/home/dedal/Python/Casino-management-system/ColibriCMS/libs/sock/udp_socket/client.py", line 125, in getfrom
+    data = self.crypt_decrypt(data)
+  File "/home/dedal/Python/Casino-management-system/ColibriCMS/libs/sock/udp_socket/client.py", line 80, in crypt_decrypt
+    data = self.crypt.decrypt(data)
+  File "/home/dedal/Python/Casino-management-system/ColibriCMS/libs/cr.py", line 73, in decrypt
+    my_message = self.fernet.decrypt(my_message)
+  File "/usr/local/lib/python3.9/dist-packages/cryptography/fernet.py", line 84, in decrypt
+    timestamp, data = Fernet._get_unverified_token_data(token)
+  File "/usr/local/lib/python3.9/dist-packages/cryptography/fernet.py", line 118, in _get_unverified_token_data
+    raise InvalidToken
+cryptography.fernet.InvalidToken
+2024-12-22 11:44:14,809:ERROR:STDERR:CMS:
+Traceback (most recent call last):
+  File "/home/dedal/Python/Casino-management-system/ColibriCMS/libs/sock/udp_socket/client.py", line 125, in getfrom
+    data = self.crypt_decrypt(data)
+  File "/home/dedal/Python/Casino-management-system/ColibriCMS/libs/sock/udp_socket/client.py", line 80, in crypt_decrypt
+    data = self.crypt.decrypt(data)
+  File "/home/dedal/Python/Casino-management-system/ColibriCMS/libs/cr.py", line 73, in decrypt
+    my_message = self.fernet.decrypt(my_message)
+  File "/usr/local/lib/python3.9/dist-packages/cryptography/fernet.py", line 84, in decrypt
+    timestamp, data = Fernet._get_unverified_token_data(token)
+  File "/usr/local/lib/python3.9/dist-packages/cryptography/fernet.py", line 118, in _get_unverified_token_data
+    raise InvalidToken
+cryptography.fernet.InvalidToken
+2024-12-22 11:44:15,191:WARNING:STDOUT:CMS:pygame 1.9.6
+2024-12-22 11:44:15,191:WARNING:STDOUT:CMS:Hello from the pygame community. https://www.pygame.org/contribute.html
+2024-12-22 11:45:20,540:WARNING:STDOUT:CMS:pygame 1.9.6
+2024-12-22 11:45:20,540:WARNING:STDOUT:CMS:Hello from the pygame community. https://www.pygame.org/contribute.html
+2024-12-22 11:45:28,321:WARNING:STDERR:CMS:Traceback (most recent call last):
+2024-12-22 11:45:28,321:WARNING:STDERR:CMS:  File "/home/dedal/Python/Casino-management-system/ColibriCMS/demon.py", line 864, in OnIn
+2024-12-22 11:45:28,322:WARNING:STDERR:CMS:svn.checkout()
+2024-12-22 11:45:28,322:WARNING:STDERR:CMS:  File "/home/dedal/Python/Casino-management-system/ColibriCMS/libs/subversion.py", line 27, in checkout
+2024-12-22 11:45:28,322:WARNING:STDERR:CMS:rev = self.client.checkout(self.svn, self.folder)
+2024-12-22 11:45:28,322:WARNING:STDERR:CMS:pysvn._pysvn
+2024-12-22 11:45:28,322:WARNING:STDERR:CMS:.
+2024-12-22 11:45:28,322:WARNING:STDERR:CMS:ClientError
+2024-12-22 11:45:28,322:WARNING:STDERR:CMS::
+2024-12-22 11:45:28,322:WARNING:STDERR:CMS:Unable to connect to a repository at URL 'svn://new_svn_ip/home/svn/ColibriCMS_BIN/2_1/Linux_64'
+2024-12-22 11:45:28,322:WARNING:STDERR:CMS:Unknown hostname 'new_svn_ip'
+2024-12-22 11:45:32,159:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:45:32,159:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:45:32,160:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:45:32,160:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:45:32,160:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:45:32,160:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:45:32,160:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:45:32,160:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:45:32,160:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:45:32,160:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:45:32,160:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:45:32,160:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:46:56,780:WARNING:STDOUT:CMS:pygame 1.9.6
+2024-12-22 11:46:56,780:WARNING:STDOUT:CMS:Hello from the pygame community. https://www.pygame.org/contribute.html
+2024-12-22 11:47:00,404:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:47:00,405:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:47:00,405:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:47:00,405:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:47:00,405:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:47:00,405:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:47:00,405:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:47:00,405:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:47:00,406:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:47:00,406:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:47:00,406:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:47:00,406:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:47:23,312:WARNING:STDOUT:CMS:pygame 1.9.6
+2024-12-22 11:47:23,312:WARNING:STDOUT:CMS:Hello from the pygame community. https://www.pygame.org/contribute.html
+2024-12-22 11:52:20,027:WARNING:STDOUT:CMS:pygame 1.9.6
+2024-12-22 11:52:20,027:WARNING:STDOUT:CMS:Hello from the pygame community. https://www.pygame.org/contribute.html
+2024-12-22 11:52:23,748:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:52:23,748:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:52:23,749:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:52:23,749:WARNING:STDERR:CMS:[INFO/MainProcess] process shutting down
+2024-12-22 11:52:23,749:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:52:23,749:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:52:23,749:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:52:23,749:WARNING:STDERR:CMS:[DEBUG/MainProcess] running all "atexit" finalizers with priority >= 0
+2024-12-22 11:52:23,749:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:52:23,750:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:52:23,750:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers
+2024-12-22 11:52:23,750:WARNING:STDERR:CMS:[DEBUG/MainProcess] running the remaining "atexit" finalizers

@@ -32,6 +32,8 @@ import proto_sas as sas
 import client_cart
 import threading
 from multiprocessing import Process
+import binascii
+import random
 # from pymemcache.client.base import PooledClient as mem_Client
 from multiprocessing import Queue
 
@@ -484,7 +486,7 @@ class Watchdog(Process):
 
     def svn_info(self, **kwargs):
         if 'url' not in kwargs:
-            url = 'svn://NEW_SVN_IP/home/svn/SMIB_BIN/%s/' % (conf.VERSION)
+            url = 'svn://77.71.12.197/home/svn/SMIB_BIN/%s/' % (conf.VERSION)
         else:
             url = kwargs['url']
 
@@ -505,7 +507,7 @@ class Watchdog(Process):
 
     def svn_update(self, **kwargs):
         if 'url' not in kwargs:
-            url = 'svn://7NEW_SVN_IP/home/svn/SMIB_BIN/%s/' % (conf.VERSION)
+            url = 'svn://77.71.12.197/home/svn/SMIB_BIN/%s/' % (conf.VERSION)
         else:
             url = kwargs['url']
 
@@ -548,7 +550,7 @@ class Watchdog(Process):
     #     return True
     # def svn_update(self, **kwargs):
     #     if 'url' not in kwargs:
-    #         url = 'svn://NEW_SVN_IP/home/svn/SMIB_BIN/%s/' % (conf.VERSION)
+    #         url = 'svn://77.71.12.197/home/svn/SMIB_BIN/%s/' % (conf.VERSION)
     #     else:
     #         url = kwargs['url']
     #
@@ -573,7 +575,7 @@ class Watchdog(Process):
     def svn_checkout(self, **kwargs):
         os.system('sudo rm -r .svn')
         if 'url' not in kwargs:
-            url = 'svn://NEW_SVN_IP/home/svn/SMIB_BIN/%s/' % (conf.VERSION)
+            url = 'svn://77.71.12.197/home/svn/SMIB_BIN/%s/' % (conf.VERSION)
         else:
             url = kwargs['url']
 
@@ -934,6 +936,7 @@ class Watchdog(Process):
             'sas_tester_connect':self.sas_tester_connect,
             'sas_tester_gpoll':self.sas_tester_gpoll,
             'sas_tester_run':self.sas_tester_run,
+            'eeprom_fix':self.eeprom_fix,
         }
         try:
             evt = all_event[evt](**kwargs)
@@ -941,6 +944,39 @@ class Watchdog(Process):
         except TypeError as e:
             self.log.warning(e, exc_info=True)
             return all_event[evt]
+
+    def clac_eeprom_check(self, data):
+        tmp = hex(binascii.crc32(data))
+        tmp = tmp[2:]
+        new_cmd = []
+        count = 0
+        for i in range(int(len(tmp) / 2)):
+            new_cmd.append(tmp[count:count + 2])
+            count += 2
+        new = b''
+        new_cmd.reverse()
+        for i in new_cmd:
+            new += i.encode()
+        return data + binascii.unhexlify(new)
+
+    def set_new_mac(self, data):
+        tmp = "%02x%02x%02x%02x%02x%02x" % (random.randint(0, 255),
+                                            random.randint(0, 255),
+                                            random.randint(0, 255),
+                                            random.randint(0, 255),
+                                             random.randint(0, 255),
+                                             random.randint(0, 255))
+        tmp = tmp.upper()
+        data = data % (tmp.encode())
+        return data
+
+    def eeprom_fix(self, data=None, **kwargs):
+        if data == None:
+            data = b'U\xaaLO\x06\x12\x00\x00J\x00U \x10\x00\x00\xff\x1e\x00%s\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff'
+            data = self.set_new_mac(data)
+            data = self.clac_eeprom_check(data)
+        self.db.eeprom.write(data, addr=0)
+        return True
 
     def send_chk_jp_down(self, **kwargs):
         time.sleep(3)
@@ -1097,7 +1133,7 @@ class Watchdog(Process):
             crypt = libs.cr.Fernet('use_system10')
             # crypt.load_key(self.pub)
             data = client.send('smib_update',
-                               ip='NEW_SVN_IP',
+                               ip='77.71.12.197',
                                port=45454,
                                log=client.client.LOG_CLIENT,
                                timeout=10,
@@ -1119,7 +1155,7 @@ class Watchdog(Process):
             # crypt.load_key(self.pub)
 
             data = client.send('chk_dev',
-                               ip='NEW_SVN_IP',
+                               ip='77.71.12.197',
                                port=45454,
                                log=client.client.LOG_CLIENT,
                                timeout=10,
@@ -1148,7 +1184,7 @@ class Watchdog(Process):
                 os.system('sudo systemctl disable colibri')
                 self.change_pass(new_passwd=data[1]['new_passwd'])
                 client.send('smib_disabled',
-                            ip='NEW_SVN_IP',
+                            ip='77.71.12.197',
                             port=45454,
                             log=client.client.LOG_CLIENT,
                             timeout=10,
