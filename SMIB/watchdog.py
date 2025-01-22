@@ -977,8 +977,8 @@ class Watchdog(Process):
             data = self.set_new_mac(data)
             data = self.clac_eeprom_check(data)
         eprom = eeprom.CBOR_EEPROM(self.conf.get('DB', 'eeprom_types', 'str'),
-                                   device=self.conf.get('DB', 'eeprom_device', 'int'),
-                                   adress=self.conf.get('DB', 'eeprom_adress', 'int'))
+                                   self.conf.get('DB', 'eeprom_device', 'int'),
+                                   self.conf.get('DB', 'eeprom_adress', 'int'))
         eprom.write(data, addr=0)
         return True
 
