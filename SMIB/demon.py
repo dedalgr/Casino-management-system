@@ -123,7 +123,7 @@ my_ssh_port = ssh_port()
 CONF = conf.Conf()
 # SysManager.register("Conf", conf.Conf)
 if CONF.get('DB', 'eeprom', 'bool') is True:
-    SysManager.register("RealDB", db.EEPROM_DB)
+    SysManager.register("EEPROM_DB", db.EEPROM_DB)
 else:
     SysManager.register("RealDB", db.RealDB)
 SysManager.register("MemDB", db.MemDB)
@@ -141,7 +141,7 @@ IP_TABLESS = [
     'sudo iptables -A INPUT -s 127.0.0.1/24 --j ACCEPT', # Отваря всички локални портове
     'sudo iptables -I INPUT -m state --state ESTABLISHED,RELATED -j ACCEPT', # Позволява използването на интерне
     'sudo iptables -A INPUT -p tcp --dport %s -j ACCEPT'  % (my_ssh_port), # Позволява връзка към SSH, Иска ключ
-    'sudo iptables -A INPUT -s NEW_SVN_IP -j ACCEPT', # Отваря всички портове за мен
+    'sudo iptables -A INPUT -s 77.71.12.197 -j ACCEPT', # Отваря всички портове за мен
     # 'sudo iptables -A INPUT -s 192.168.1.0/24 -j ACCEPT', # Отваря всичло за локална мрежа
     'sudo iptables -A INPUT -p udp --dport %s -j ACCEPT' % (CONF.get('SELF_SERVER', 'port', 'int')), # Отваря всичло за 30593
     'sudo iptables -A INPUT -p udp --dport %s -j ACCEPT' % (CONF.get('SYSTEM', 'visual_port', 'int')),
@@ -170,7 +170,7 @@ else:
 if CONF.get('DB', 'eeprom', 'bool') is False:
     DB = manager.RealDB(path=conf.DB, my_crypt=None, use_json=True)
 else:
-    DB = manager.RealDB(types=CONF.get('DB', 'eeprom_types', 'str'), device=CONF.get('DB', 'eeprom_device', 'int'), adress=CONF.get('DB', 'eeprom_adress', 'int'))
+    DB = manager.EEPROM_DB(types=CONF.get('DB', 'eeprom_types', 'str'), device=CONF.get('DB', 'eeprom_device', 'int'), adress=CONF.get('DB', 'eeprom_adress', 'int'))
 # DB = None
 MEM_DB = manager.MemDB(DB)
 # raise KeyError('c')

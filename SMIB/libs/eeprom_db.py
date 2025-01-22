@@ -16,6 +16,20 @@ class CBOR():
         self.eeprom = CBOR_EEPROM(self.types, self.device, self.adress)
         # self.eeprom._chunk_size = 1790
 
+    def read(self, size, addr=None):
+        if addr is None:
+            return self.read(size)
+        else:
+            return self.eeprom.read(size, addr=addr)
+
+    def write(self, data, addr=None):
+        if addr is None:
+            self.eeprom.write(data)
+        else:
+            self.eeprom.write(data, addr=addr)
+        return True
+
+
     def open(self):
         return self.eeprom.open()
 
@@ -59,8 +73,8 @@ class CBOR():
         # self.eeprom.put('keys', tmp)
         return True
 
-    def erese(self):
-        self.eeprom.erase_file()
+    def erese(self, del_all=False):
+        self.eeprom.erase_file(del_all=del_all)
         return True
 
     def keys(self):

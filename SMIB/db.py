@@ -10,6 +10,8 @@ from libs.db.file_db import SQLite
 from libs.db.exception import NoSQLiteDB, EmptyDB
 from libs.db.mem_db import DictDB
 import os
+import random
+import binascii
 # try:
 from libs.eeprom import CBOR
 # except ImportError:
@@ -85,13 +87,67 @@ class NewDB():
             self.sync()
 
 class EEPROM_DB(CBOR, NewDB):
-    def __init__(self, types="24c01", device=1, adress=0x50):
-        CBOR.__init__(self, types=types, device=device, adress=adress)
-        if not self.keys():
-            self.erese()
+    def __init__(self, types="24c2048", device=1, adress=0x50):
+        my_keys = {
+            'JACKPOT': 1,
+            'GAME_DISABLE':2,
+            'DISABLE_GAME_JP':3,
+            'WORKING_MODULE':4,
+            'KEYSYSTEM':5,
+            'MULTI_KEYSYSTEM':6,
+            'BONUSCART':7,
+            'OUT_COMPENSATION':8,
+            'SAS_SECURITY':9,
+            'BONUS_ERROR_LOG':10,
+            'PLAYER':11,
+            'PLAYER_BINUS_HOLD_ERROR':12,
+            'PLAYER_ERROR':13,
+            'PLAYER_RESERVE':14,
+            'PLAYER_BONUS_REVERT':15,
+            'AFT_TRANSACTION':16
+        }
+        CBOR.__init__(self, types=types, device=device, adress=adress, my_keys=my_keys, count=16)
+        try:
+            self.get('WORKING_MODULE')
+        except:
+            self.erese(del_all=True)
+            self.eeprom_fix()
             self.new()
         else:
             self.update()
+
+    def clac_eeprom_check(self, data):
+        tmp = hex(binascii.crc32(data))
+        tmp = tmp[2:]
+        new_cmd = []
+        count = 0
+        for i in range(int(len(tmp) / 2)):
+            new_cmd.append(tmp[count:count + 2])
+            count += 2
+        new = b''
+        new_cmd.reverse()
+        for i in new_cmd:
+            new += i.encode()
+        return data + binascii.unhexlify(new)
+
+    def set_new_mac(self, data):
+        tmp = "%02x%02x%02x%02x%02x%02x" % (random.randint(0, 255),
+                                            random.randint(0, 255),
+                                            random.randint(0, 255),
+                                            random.randint(0, 255),
+                                             random.randint(0, 255),
+                                             random.randint(0, 255))
+        tmp = tmp.upper()
+        data = data % (tmp.encode())
+        return data
+
+    def eeprom_fix(self, data=None, **kwargs):
+        if data == None:
+            data = b'U\xaaLO\x06\x12\x00\x00J\x00U \x10\x00\x00\xff\x1e\x00%s\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff\xff'
+            data = self.set_new_mac(data)
+            data = self.clac_eeprom_check(data)
+        self.write(data, addr=0)
+        return True
 
     def load(self):
         self.open()
